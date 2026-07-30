@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1400">
+<title>杭州事业编备考日历</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif; background:#f2f5f8; color:#2c3e50; padding:32px; }
+h1 { text-align:center; font-size:26px; font-weight:700; margin-bottom:6px; color:#1a2a3a; }
+.subtitle { text-align:center; color:#7b8da0; font-size:14px; margin-bottom:28px; letter-spacing:1px; }
+
+.month-label { font-size:18px; font-weight:600; margin:24px 0 14px; padding:5px 14px; border-radius:20px; display:inline-block; letter-spacing:.5px; }
+.month-label.jul { background:#e8f4f8; color:#0d7377; }
+.month-label.aug { background:#e8f4f8; color:#0d7377; }
+.month-label.sep { background:#e8f4f8; color:#0d7377; }
+
+.cal { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-bottom:24px; }
+.cal .day { background:#fff; border-radius:10px; padding:10px 12px; min-height:106px; font-size:13px; line-height:1.9; position:relative; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all .25s cubic-bezier(.4,0,.2,1); cursor:default; }
+.cal .day:hover { box-shadow:0 4px 16px rgba(0,0,0,0.1); transform:translateY(-2px); }
+.cal .day .num { font-weight:600; font-size:15px; color:#b0bec5; display:block; margin-bottom:3px; transition:color .25s; }
+.cal .day:hover .num { color:#0d7377; }
+.cal .day .num.active { color:#0d7377; }
+.cal .day .task { display:block; padding:3px 8px; margin:2px 0; border-radius:4px; font-size:12px; font-weight:500; transition:all .2s; border-left:3px solid transparent; }
+.cal .day:hover .task.morning { background:#f0faf9; border-left-color:#0d7377; }
+.cal .day:hover .task.noon { background:#f5faf0; border-left-color:#558b2f; }
+.cal .day:hover .task.evening { background:#f0f5ff; border-left-color:#1a56db; }
+.cal .day:hover .task.special { background:#fff5f5; border-left-color:#c62828; transform:scale(1.03); }
+.cal .day .task.morning { background:#f5faf9; color:#0d7377; border-left-color:#14a3a8; }
+.cal .day .task.noon { background:#f7faf5; color:#558b2f; border-left-color:#66bb6a; }
+.cal .day .task.evening { background:#f5f8ff; color:#1a56db; font-weight:600; border-left-color:#3b82f6; }
+.cal .day .task.special { background:#fff5f5; color:#c62828; font-weight:600; border-left-color:#ef5350; }
+.cal .day .task.today { background:#e0f2f1; color:#0d7377; font-weight:600; border-left-color:#0d7377; }
+.cal .day.off { background:transparent; box-shadow:none; border:none; }
+.cal .day.off .num { color:#c8d6e0; }
+.cal .day.rest { background:#f8fafb; color:#a0b4c4; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:14px; box-shadow:none; }
+.cal .day.rest .num { color:#b0c4d0; }
+
+.cal .day.exam { background:linear-gradient(135deg, #0d7377, #14a3a8); color:#fff; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:22px; font-weight:700; letter-spacing:2px; transition:all .3s; cursor:default; }
+.cal .day.exam:hover { transform:scale(1.04); box-shadow:0 6px 24px rgba(13,115,119,0.35); }
+.cal .day.exam .num { color:rgba(255,255,255,0.7); font-size:18px; }
+
+.cal .day.header { background:transparent; box-shadow:none; min-height:auto; padding:6px 4px 10px; text-align:center; font-weight:600; color:#1a2a3a; font-size:13px; border:none; }
+
+.cal .day.phase1 { border-top:3px solid #5c6bc0; }
+.cal .day.phase2 { border-top:3px solid #26a69a; }
+.cal .day.phase3 { border-top:3px solid #ef5350; }
+
+.stats { display:flex; gap:14px; margin:20px 0 8px; flex-wrap:wrap; }
+.stat { background:#fff; border-radius:12px; padding:18px 28px; text-align:center; flex:1; min-width:100px; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all .25s cubic-bezier(.4,0,.2,1); cursor:default; }
+.stat:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+.stat:hover .val { color:#14a3a8; }
+.stat .val { font-size:30px; font-weight:700; color:#0d7377; transition:color .25s; }
+.stat .label { font-size:12px; color:#7b8da0; margin-top:4px; }
+
+.legend { display:flex; gap:20px; margin:12px 0 4px; flex-wrap:wrap; font-size:12px; color:#7b8da0; }
+.legend span { display:flex; align-items:center; gap:5px; }
+.legend .dot { width:10px; height:10px; border-radius:3px; }
+</style>
+</head>
+<body>
+
+<h1>📚 杭州事业编备考日历</h1>
+<p class="subtitle">2026年7月30日 — 9月19日 · 共52天</p>
+
+<div class="stats">
+  <div class="stat"><div class="val">52</div><div class="label">备考天数</div></div>
+  <div class="stat"><div class="val">5</div><div class="label">全真模考</div></div>
+  <div class="stat"><div class="val">6+</div><div class="label">大作文</div></div>
+  <div class="stat"><div class="val">4</div><div class="label">综应限时</div></div>
+  <div class="stat"><div class="val">3</div><div class="label">职测模考</div></div>
+</div>
+
+<div class="legend">
+  <span><span class="dot" style="background:#0d7377"></span> 通勤</span>
+  <span><span class="dot" style="background:#558b2f"></span> 午休</span>
+  <span><span class="dot" style="background:#1a56db"></span> 晚间</span>
+  <span><span class="dot" style="background:#5c6bc0"></span> 一阶段</span>
+  <span><span class="dot" style="background:#26a69a"></span> 二阶段</span>
+  <span><span class="dot" style="background:#ef5350"></span> 三阶段</span>
+</div>
+
+<!-- ==================== 7月 ==================== -->
+<span class="month-label jul">7月 — 今天开始！</span>
+<div class="cal">
+  <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
+  <div class="day off"></div><div class="day off"></div>
+  <div class="day phase1"><span class="num active">30</span><span class="task today">🚀 今天开始！</span><span class="task evening">综应-归纳概括</span></div>
+  <div class="day phase1"><span class="num active">31</span><span class="task morning">📖 常识速记</span><span class="task noon">📝 资料15题</span><span class="task evening">职测-判断推理</span></div>
+</div>
+
+<!-- ==================== 8月 ==================== -->
+<span class="month-label aug">8月 — 基础夯实 + 专项突破</span>
+<div class="cal">
+  <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
+  <div class="day off"></div><div class="day off"></div><div class="day off"></div><div class="day off"></div>
+  <div class="day phase1"><span class="num active">1</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 数量15题</span><span class="task evening">职测-资料分析</span></div>
+  <div class="day phase1"><span class="num active">2</span><span class="task morning">—</span><span class="task noon">🔢 数推10题</span><span class="task evening">综应-对策建议</span></div>
+  <div class="day phase1"><span class="num active">3</span><span class="task morning">📖 轻量复习</span><span class="task noon">📝 错题整理</span><span class="task evening">半天学习</span></div>
+  <div class="day phase1"><span class="num active">4</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 言语15题</span><span class="task evening">职测-言语理解</span></div>
+  <div class="day phase1"><span class="num active">5</span><span class="task morning">📚 成语积累</span><span class="task noon">📝 常识15题</span><span class="task evening">职测-数量关系</span></div>
+  <div class="day phase1"><span class="num active">6</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 判断15题</span><span class="task evening">综应-归纳概括</span></div>
+  <div class="day phase1"><span class="num active">7</span><span class="task morning">📖 常识速记</span><span class="task noon">📝 资料15题</span><span class="task evening">职测-判断推理</span></div>
+  <div class="day phase1"><span class="num active">8</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 数量15题</span><span class="task evening">职测-资料分析</span></div>
+  <div class="day phase1"><span class="num active">9</span><span class="task morning">—</span><span class="task noon">🔢 数推10题</span><span class="task evening">综应-对策建议</span></div>
+  <div class="day phase1"><span class="num active">10</span><span class="task morning">📖 轻量复习</span><span class="task noon">📝 错题整理</span><span class="task evening">半天学习</span></div>
+  <div class="day phase1"><span class="num active">11</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 言语15题</span><span class="task evening">职测-常识判断</span></div>
+  <div class="day phase1"><span class="num active">12</span><span class="task morning">📚 成语积累</span><span class="task noon">📝 常识15题</span><span class="task evening">职测-数字推理</span></div>
+  <div class="day phase1"><span class="num active">13</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 判断15题</span><span class="task evening">综应-公文写作</span></div>
+  <div class="day phase1"><span class="num active">14</span><span class="task morning">📖 常识速记</span><span class="task noon">📝 资料15题</span><span class="task evening">职测-薄弱点巩固</span></div>
+  <div class="day phase1"><span class="num active">15</span><span class="task morning">📰 时政速记</span><span class="task noon">📝 数量15题</span><span class="task evening">综应-大作文</span></div>
+  <div class="day phase1"><span class="num active">16</span><span class="task morning">—</span><span class="task noon">🔢 数推10题</span><span class="task special">🔥 首次摸底模考</span></div>
+  <div class="day rest"><span class="num">17</span>模考分析</div>
+  <div class="day phase2"><span class="num active">18</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项①</span></div>
+  <div class="day phase2"><span class="num active">19</span><span class="task morning">📋 素材积累</span><span class="task noon">📝 常识15题</span><span class="task evening">综应-公文写作</span></div>
+  <div class="day phase2"><span class="num active">20</span><span class="task morning">📖 范文背诵</span><span class="task noon">📝 资料15题</span><span class="task evening">职测专项②</span></div>
+  <div class="day phase2"><span class="num active">21</span><span class="task morning">📋 素材积累</span><span class="task noon">🔢 数推15题</span><span class="task evening">综应-大作文 ✍️</span></div>
+  <div class="day phase2"><span class="num active">22</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项③</span></div>
+  <div class="day phase2"><span class="num active">23</span><span class="task morning">—</span><span class="task noon">🔢 数推15题</span><span class="task special">🔥 全真模考 #1</span></div>
+  <div class="day rest"><span class="num">24</span>模考分析</div>
+  <div class="day phase2"><span class="num active">25</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项④</span></div>
+  <div class="day phase2"><span class="num active">26</span><span class="task morning">📋 素材积累</span><span class="task noon">📝 常识15题</span><span class="task evening">综应-公文写作</span></div>
+  <div class="day phase2"><span class="num active">27</span><span class="task morning">📖 范文背诵</span><span class="task noon">📝 资料15题</span><span class="task evening">职测专项⑤</span></div>
+  <div class="day phase2"><span class="num active">28</span><span class="task morning">📋 素材积累</span><span class="task noon">🔢 数推15题</span><span class="task evening">综应-大作文 ✍️</span></div>
+  <div class="day phase2"><span class="num active">29</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项⑥</span></div>
+  <div class="day phase2"><span class="num active">30</span><span class="task morning">—</span><span class="task noon">🔢 数推15题</span><span class="task special">🔥 全真模考 #2</span></div>
+  <div class="day rest"><span class="num">31</span>模考分析</div>
+</div>
+
+<!-- ==================== 9月 ==================== -->
+<span class="month-label sep">9月 — 专项收尾 + 冲刺模拟</span>
+<div class="cal">
+  <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
+  <div class="day phase2"><span class="num active">1</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项循环</span></div>
+  <div class="day phase2"><span class="num active">2</span><span class="task morning">📋 素材积累</span><span class="task noon">📝 常识15题</span><span class="task evening">综应-公文写作</span></div>
+  <div class="day phase2"><span class="num active">3</span><span class="task morning">📖 范文背诵</span><span class="task noon">📝 资料15题</span><span class="task evening">职测专项循环</span></div>
+  <div class="day phase2"><span class="num active">4</span><span class="task morning">📋 素材积累</span><span class="task noon">🔢 数推15题</span><span class="task evening">综应-大作文 ✍️</span></div>
+  <div class="day phase2"><span class="num active">5</span><span class="task morning">📖 范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项循环</span></div>
+  <div class="day phase2"><span class="num active">6</span><span class="task morning">—</span><span class="task noon">🔢 数推15题</span><span class="task special">🔥 全真模考 #3</span></div>
+  <div class="day rest"><span class="num">7</span>阶段复盘</div>
+  <div class="day phase3"><span class="num active">8</span><span class="task morning">📰 时政背诵</span><span class="task noon">职测套卷</span><span class="task evening">综应-限时训练 ⏱️</span></div>
+  <div class="day phase3"><span class="num active">9</span><span class="task morning">📋 素材背诵</span><span class="task noon">错题重做</span><span class="task evening">职测-模考</span></div>
+  <div class="day phase3"><span class="num active">10</span><span class="task morning">📰 时政背诵</span><span class="task noon">职测套卷</span><span class="task evening">综应-限时训练 ⏱️</span></div>
+  <div class="day phase3"><span class="num active">11</span><span class="task morning">📋 素材背诵</span><span class="task noon">错题重做</span><span class="task evening">职测-模考</span></div>
+  <div class="day phase3"><span class="num active">12</span><span class="task morning">📰 时政背诵</span><span class="task noon">职测套卷</span><span class="task evening">🔮 考前押题复习</span></div>
+  <div class="day phase3"><span class="num active">13</span><span class="task morning">—</span><span class="task noon">轻量复习</span><span class="task special">🔥 全真模考 #4</span></div>
+  <div class="day rest"><span class="num">14</span>模考分析</div>
+  <div class="day phase3"><span class="num active">15</span><span class="task morning">📰 时政背诵</span><span class="task noon">职测套卷</span><span class="task evening">综应-限时训练 ⏱️</span></div>
+  <div class="day phase3"><span class="num active">16</span><span class="task morning">📋 素材背诵</span><span class="task noon">错题重做</span><span class="task evening">职测-模考</span></div>
+  <div class="day phase3"><span class="num active">17</span><span class="task morning">📰 时政背诵</span><span class="task noon">职测套卷</span><span class="task evening">综应-限时训练 ⏱️</span></div>
+  <div class="day phase3"><span class="num active">18</span><span class="task morning">📖 轻量复习</span><span class="task noon">错题浏览</span><span class="task evening">😴 早睡调整</span></div>
+  <div class="day exam"><span class="num">19</span>🎯 考试日！</div>
+  <div class="day off"></div><div class="day off"></div>
+</div>
+
+</body>
+</html>

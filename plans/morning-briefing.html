@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>晨读播报</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:#f5f7fa; color:#2c3e50; padding:16px; max-width:600px; margin:0 auto; }
+.header { background:linear-gradient(135deg,#0d7377,#14a3a8); color:#fff; border-radius:14px; padding:20px; text-align:center; margin-bottom:16px; }
+.header h1 { font-size:20px; margin-bottom:4px; }
+.header .date { font-size:13px; opacity:.8; }
+.card { background:#fff; border-radius:12px; padding:16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+.card h2 { font-size:15px; color:#0d7377; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.card p { font-size:13px; line-height:1.8; color:#3d5065; margin-bottom:6px; }
+.card .highlight { background:#e8f4f8; border-left:3px solid #14a3a8; padding:6px 10px; border-radius:0 6px 6px 0; margin:6px 0; font-size:12px; color:#0d7377; }
+.card .tag { display:inline-block; background:#e8f4f8; color:#0d7377; font-size:11px; padding:2px 8px; border-radius:10px; margin:2px 3px; }
+.card ul { padding-left:18px; font-size:13px; line-height:1.8; color:#3d5065; }
+.card ul li { margin-bottom:4px; }
+.card table { width:100%; border-collapse:collapse; font-size:12px; margin:6px 0; }
+.card table th { background:#e8f4f8; color:#0d7377; padding:6px 8px; text-align:left; }
+.card table td { padding:6px 8px; border-bottom:1px solid #f0f4f8; }
+.yesterday { border:2px dashed #e0e0e0; background:#fafbfc; }
+.footer { text-align:center; color:#b0c4d0; font-size:12px; padding:16px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌅 晨读播报</h1>
+  <div class="date">2026年7月31日 周四</div>
+</div>
+
+<!-- 昨日回顾 -->
+<div class="card yesterday">
+  <h2>📌 昨日回顾</h2>
+  <p><strong>错题速记：</strong></p>
+  <ul>
+    <li>定义判断：逆向选择 ≠ 简历造假，是"劣币驱逐良币"</li>
+    <li>类比推理：江苏的省会是<strong>南京</strong>，不是苏州</li>
+    <li>逻辑判断："有人喜欢A"推不出必然结论</li>
+    <li>削弱题：最强削弱是<strong>否定因果方向</strong>（趋势在政策前已存在）</li>
+  </ul>
+  <p style="margin-top:6px"><strong>昨日学习：</strong>午休判断推理 10/15（67%），晚间综应归纳概括（方法已掌握，待练）</p>
+</div>
+
+<!-- 时政 -->
+<div class="card">
+  <h2>📰 时政速览</h2>
+  <p><strong>【全国】二十届三中全会改革落地</strong></p>
+  <p>财税改革：消费税征收环节后移试点；新型城镇化：推进农业转移人口市民化。杭州作为超大城市，落户政策有望进一步放宽。</p>
+  <div class="highlight">综应应用：大作文"改革为了人民"可作为论点支撑</div>
+  <p><strong>【全国】上半年经济数据</strong></p>
+  <p>GDP +5.2%，数字经济核心产业 +12.8%，新能源汽车产量 +35%。消费复苏，房地产仍处调整期。</p>
+  <p><strong>【浙江】杭州"城市大脑 2.0"</strong></p>
+  <p>覆盖交通、医疗、政务三大场景，浙里办用户突破 1.2 亿。全国数字政府建设标杆。</p>
+  <div class="highlight">综应应用：归纳概括"数字治理经验"、大作文"科技赋能基层治理"</div>
+  <p><strong>【浙江】"千万工程"新三年行动</strong></p>
+  <p>"千村示范、万村整治"→"千村引领、万村共富"。关键词：和美乡村、产业兴旺、城乡融合。</p>
+  <p><strong>【浙江】枫桥经验 60 周年</strong></p>
+  <p>"小事不出村，大事不出镇，矛盾不上交"。新时代强调四治融合：自治、法治、德治、智治。</p>
+</div>
+
+<!-- 成语 -->
+<div class="card">
+  <h2>📝 成语积累</h2>
+  <p><strong>1. 因势利导</strong> — 顺着事物发展趋势加以引导</p>
+  <p>造句：杭州因势利导发展数字经济，成为全国标杆。</p>
+  <div class="highlight">对策建议题高频词，表达"顺应规律、主动作为"</div>
+  <p style="margin-top:8px"><strong>2. 标本兼治</strong> — 既要解决表面问题，又要根治深层原因</p>
+  <p>造句：城市交通拥堵需要标本兼治，限行只是权宜之计。</p>
+  <div class="highlight">综应对策题高频词，体现系统性思维</div>
+</div>
+
+<!-- 常识 -->
+<div class="card">
+  <h2>💡 常识速记 — 浙江省情</h2>
+  <p><strong>周四 · 经济数据</strong></p>
+  <table>
+    <tr><th>指标</th><th>数据</th><th>排名</th></tr>
+    <tr><td>GDP 总量</td><td>约 8.3 万亿</td><td>全国第 4</td></tr>
+    <tr><td>人均 GDP</td><td>约 12.5 万元</td><td>省区第 1 🥇</td></tr>
+    <tr><td>数字经济占比</td><td>28%+</td><td>全国第 1 🥇</td></tr>
+    <tr><td>民企 500 强</td><td>100+ 家</td><td>连续 25 年全国第 1 🥇</td></tr>
+  </table>
+  <div class="highlight">浙江"三个第一"：数字经济占比、人均GDP、民企500强数量</div>
+</div>
+
+<div class="footer">📚 杭州事业编备考 · 距考试还有 50 天</div>
+
+</body>
+</html>
