@@ -43,6 +43,7 @@
 3. **确保当前日期 tab 存在**：检查 sidebar 是否有今日链接、`mdMMDD` div 是否存在，没有则自动创建
 4. 将内容写入 `plans/study-dashboard.html` 当前日期 `mdMMDD` 区块的晨读 block
 5. 回复「✅ 今日早读已生成，刷新页面查看」
+6. 自动执行 git add + commit + push，推送成功后补充「📦 已同步到 GitHub Pages」
 
 ### 用户输入「中」
 1. 根据当天日期和学习计划，确定今日刷题模块（五大题型轮换）
@@ -55,6 +56,7 @@
 5. **确保当前日期 tab 存在**：检查 sidebar 是否有今日链接、`mdMMDD` div 是否存在，没有则自动创建
 6. 将内容写入 `plans/study-dashboard.html` 当前日期 `mdMMDD` 区块的午休 block
 7. 回复「✅ 今日午休刷题已生成，刷新页面做题，做完点「对答案」自动批改」
+8. 自动执行 git add + commit + push，推送成功后补充「📦 已同步到 GitHub Pages」
 
 ### 用户输入「晚」
 1. 根据学习计划确定今晚学习主题
@@ -63,6 +65,7 @@
 4. **确保当前日期 tab 存在**：检查 sidebar 是否有今日链接、`mdMMDD` div 是否存在，没有则自动创建
 5. 将内容写入 `plans/study-dashboard.html` 当前日期 `mdMMDD` 区块的晚间 block
 6. 回复「✅ 今日晚间学习已生成，刷新页面查看」
+7. 自动执行 git add + commit + push，推送成功后补充「📦 已同步到 GitHub Pages」
 
 ### 用户输入「all」
 1. **确保当前日期 tab 存在**：检查 sidebar 是否有今日链接、`mdMMDD` div 是否存在，没有则自动创建
@@ -71,6 +74,7 @@
 4. 按「中」流程生成午休刷题（如缺失），写入 `mdMMDD` 午休 block
 5. 按「晚」流程生成晚间学习（如缺失），写入 `mdMMDD` 晚间 block
 6. 回复时说明哪些是新生成的、哪些是已有的，如「✅ 午休刷题+晚间学习已生成（早读已有，跳过），刷新页面查看」
+7. 自动执行 git add + commit + push，推送成功后补充「📦 已同步到 GitHub Pages」
 
 ## 可用技能（斜杠命令）
 | 命令 | 用途 | 使用时机 |
@@ -95,6 +99,7 @@
 9. **自动搜集热门综应范文素材，更新范文宝库（`study-dashboard.html` 的范文 tab）**
 10. **午休刷题使用 `gradeQuiz()` 自动批改，错题自动存入 localStorage 错题本**
 11. **生成内容必须写入当前日期的 tab（如 `md0801`）——如果 sidebar 没有该日期，自动新增导航链接；如果 `mdMMDD` div 不存在，自动创建完整结构（含晨读、午休、晚间三个 block 占位）**
+12. **生成内容后自动提交推送 GitHub**：每次完成「早/中/晚/all」内容生成后，自动执行 `git add` + `git commit` + `git push`，确保 GitHub Pages 同步更新。commit message 格式：`📝 更新08/01学习内容（早读/午休/晚间）`。若 push 失败（网络问题），告知用户稍后手动 `git push`。
 
 ## 数据存储
 - 学习计划：`study-assistant/plans/`
