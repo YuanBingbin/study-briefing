@@ -2,11 +2,15 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1400">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>杭州事业编备考助手</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif; background:#f2f5f8; color:#2c3e50; }
+.container { max-width:1400px; margin:0 auto; padding:0 32px; }
 
 /* 图形题专用样式 */
 .shapes { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:4px 0; }
@@ -19,7 +23,7 @@ body { font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif; bac
 .options span { font-size:13px; color:#3d5065; }
 
 /* 顶部导航 */
-.nav { background:#fff; padding:0 32px; display:flex; align-items:center; gap:0; box-shadow:0 1px 4px rgba(0,0,0,0.04); position:sticky; top:0; z-index:100; }
+.nav { background:#fff; padding:0; display:flex; box-shadow:0 1px 4px rgba(0,0,0,0.04); position:sticky; top:0; z-index:100; }
 .nav .logo { font-size:18px; font-weight:700; color:#0d7377; margin-right:32px; padding:16px 0; }
 .nav .tab { padding:14px 24px; font-size:14px; color:#7b8da0; cursor:pointer; border-bottom:2px solid transparent; transition:all .2s; text-decoration:none; }
 .nav .tab:hover { color:#0d7377; background:#f5faf9; }
@@ -30,8 +34,11 @@ body { font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif; bac
 .tab-content.active { display:block; }
 
 /* ===== 日历样式 ===== */
-.month-label { font-size:18px; font-weight:600; margin:24px 0 14px; padding:5px 14px; border-radius:20px; display:inline-block; }
-.month-label { background:#e8f4f8; color:#0d7377; }
+.month-label { font-size:18px; font-weight:600; margin:24px 0 14px; padding:5px 14px; border-radius:20px; display:inline-block; background:#e8f4f8; color:#0d7377; }
+.month-label .phase-tag { font-size:11px; padding:1px 8px; border-radius:10px; margin-left:6px; color:#fff; vertical-align:middle; }
+.month-label .phase-tag.p1 { background:#5c6bc0; }
+.month-label .phase-tag.p2 { background:#26a69a; }
+.month-label .phase-tag.p3 { background:#ef5350; }
 .cal { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-bottom:24px; }
 .cal .day { background:#fff; border-radius:10px; padding:10px 12px; min-height:104px; font-size:13px; line-height:1.85; position:relative; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all .25s cubic-bezier(.4,0,.2,1); cursor:default; }
 .cal .day:hover { box-shadow:0 4px 16px rgba(0,0,0,0.1); transform:translateY(-2px); }
@@ -53,9 +60,9 @@ body { font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif; bac
 .cal .day.exam:hover { transform:scale(1.04); box-shadow:0 6px 24px rgba(13,115,119,0.35); }
 .cal .day.exam .num { color:rgba(255,255,255,0.7); font-size:18px; }
 .cal .day.header { background:transparent; box-shadow:none; min-height:auto; padding:6px 4px 10px; text-align:center; font-weight:600; color:#1a2a3a; font-size:13px; border:none; }
-.cal .day.phase1 { border-top:3px solid #5c6bc0; }
-.cal .day.phase2 { border-top:3px solid #26a69a; }
-.cal .day.phase3 { border-top:3px solid #ef5350; }
+.cal .day.phase1 { border-left:4px solid #5c6bc0; background:#f5f6fd; }
+.cal .day.phase2 { border-left:4px solid #26a69a; background:#f5fdfb; }
+.cal .day.phase3 { border-left:4px solid #ef5350; background:#fffaf9; }
 
 .stats { display:flex; gap:14px; margin:20px 0 8px; flex-wrap:wrap; }
 .stat { background:#fff; border-radius:12px; padding:18px 28px; text-align:center; flex:1; min-width:100px; box-shadow:0 1px 3px rgba(0,0,0,0.04); transition:all .25s; cursor:default; }
@@ -95,88 +102,108 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
 /* 移动端适配 */
 @media (max-width:768px) {
   body { padding:0; }
-  h1 { font-size:20px; }
-  .subtitle { font-size:12px; margin-bottom:16px; }
-  .nav { padding:0 10px; overflow-x:auto; }
-  .nav .logo { font-size:14px; margin-right:8px; padding:10px 0; }
-  .nav .tab { padding:10px 10px; font-size:11px; white-space:nowrap; }
+  .container { padding:0 10px; }
+  h1 { font-size:22px; }
+  .subtitle { font-size:13px; margin-bottom:16px; }
+  .nav { padding:0; overflow-x:auto; }
+  .nav .logo { font-size:15px; margin-right:8px; padding:10px 0; }
+  .nav .tab { padding:10px 10px; font-size:13px; white-space:nowrap; }
   .tab-content { padding:12px; }
   .stats { gap:6px; }
   .stat { padding:10px 14px; min-width:60px; }
-  .stat .val { font-size:22px; }
-  .stat .label { font-size:10px; }
+  .stat .val { font-size:24px; }
+  .stat .label { font-size:11px; }
   .cal { gap:1px; }
-  .cal .day { padding:4px; min-height:60px; font-size:10px; line-height:1.5; border-radius:4px; }
-  .cal .day .num { font-size:11px; }
-  .cal .day .task { font-size:9px; padding:1px 3px; }
-  .cal .day.header { font-size:10px; padding:2px; }
+  .cal .day { padding:4px 5px; min-height:64px; font-size:12px; line-height:1.5; border-radius:4px; }
+  .cal .day.phase1, .cal .day.phase2, .cal .day.phase3 { border-left-width:3px; }
+  .cal .day .num { font-size:13px; }
+  .cal .day .task { font-size:11px; padding:2px 4px; }
+  .cal .day.header { font-size:11px; padding:2px; }
   .materials-layout { flex-direction:column; }
   .materials-sidebar { width:100%; position:static; display:flex; flex-wrap:wrap; gap:4px; padding:8px; }
   .materials-sidebar h3 { display:none; }
-  .materials-sidebar a { padding:4px 8px; font-size:11px; border-left:none; border-radius:4px; background:#f5faf9; }
+  .materials-sidebar a { padding:4px 8px; font-size:13px; border-left:none; border-radius:4px; background:#f5faf9; }
   .materials-main { margin-left:0; }
   .day-section { padding:14px; border-radius:8px; }
-  .day-section h3 { font-size:14px; }
-  .block h4 { font-size:13px; }
-  .block .content { font-size:13px; }
-  .block .content table { font-size:11px; }
+  .day-section h3 { font-size:15px; }
+  .block h4 { font-size:14px; }
+  .block .content { font-size:14px; }
+  .block .content table { font-size:12px; }
   .block .content th, .block .content td { padding:4px 6px; }
   .options { gap:6px; }
-  .options span { font-size:11px; }
+  .options span { font-size:12px; }
   .shapes span { width:28px; height:28px; font-size:14px; }
   .cube-unfold { grid-template-columns:36px 36px 36px; grid-template-rows:36px 36px 36px; }
   .cube-unfold .face { width:32px; height:32px; font-size:10px; }
-  .legend { gap:8px; font-size:10px; }
-  input.ans { width:28px!important; font-size:11px!important; }
-  textarea { font-size:13px!important; }
+  .legend { gap:8px; font-size:11px; }
+  input.ans { width:30px!important; font-size:13px!important; }
+  textarea { font-size:14px!important; }
+}
+
+/* 打印样式 */
+@media print {
+  body { background:#fff; font-size:12px; }
+  .nav, .tab-content:not(.active), button, .download-btn, .preview-btn { display:none!important; }
+  .tab-content.active { display:block!important; padding:0; }
+  .container { max-width:100%; padding:0; }
+  .day-section { box-shadow:none; border:1px solid #ddd; break-inside:avoid; margin-bottom:8px; padding:12px; }
+  .stat { box-shadow:none; }
+  .cal .day { box-shadow:none; border:1px solid #ddd; }
+  h1 { font-size:18px; }
+  .subtitle { font-size:11px; }
+  @page { margin:10mm; }
 }
 </style>
 </head>
 <body>
 
 <nav class="nav">
+  <div class="container" style="display:flex;align-items:center">
   <span class="logo">📚 杭州事业编备考</span>
   <a class="tab active" onclick="switchTab('plan')">📅 学习计划</a>
   <a class="tab" onclick="switchTab('materials')">📖 学习资料</a>
+  <a class="tab" onclick="switchTab('essays')">📝 范文宝库</a>
+  <a class="tab" onclick="switchTab('errors')">❌ 错题本</a>
   <a class="tab" onclick="switchTab('exam')">📊 考情分析</a>
   <a class="tab" onclick="switchTab('zj')">🏛️ 浙江省情</a>
-  <a class="tab" onclick="switchTab('errors')">❌ 错题本</a>
+  </div>
 </nav>
 
 <!-- ==================== 学习计划 ==================== -->
 <div id="tab-plan" class="tab-content active">
+  <div class="container">
   <h1>备考日历</h1>
-  <p class="subtitle">2026年7月30日 — 9月19日 · 共52天</p>
+  <p class="subtitle" id="date-range"></p>
 
   <div class="stats">
-    <div class="stat"><div class="val">52</div><div class="label">备考天数</div></div>
-    <div class="stat"><div class="val">5</div><div class="label">全真模考</div></div>
-    <div class="stat"><div class="val">6+</div><div class="label">大作文</div></div>
-    <div class="stat"><div class="val">4</div><div class="label">综应限时</div></div>
-    <div class="stat"><div class="val">3</div><div class="label">职测模考</div></div>
+    <div class="stat"><div class="val" id="stat-days">-</div><div class="label">备考天数</div></div>
+    <div class="stat"><div class="val" id="stat-mock">-</div><div class="label">全真模考</div></div>
+    <div class="stat"><div class="val" id="stat-essay">-</div><div class="label">大作文</div></div>
+    <div class="stat"><div class="val" id="stat-zhongying">-</div><div class="label">综应限时</div></div>
+    <div class="stat"><div class="val" id="stat-zhice">-</div><div class="label">职测模考</div></div>
   </div>
 
   <div class="legend">
     <span><span class="dot" style="background:#0d7377"></span> 通勤</span>
     <span><span class="dot" style="background:#558b2f"></span> 午休</span>
     <span><span class="dot" style="background:#1a56db"></span> 晚间</span>
-    <span><span class="dot" style="background:#5c6bc0"></span> 一阶段</span>
-    <span><span class="dot" style="background:#26a69a"></span> 二阶段</span>
-    <span><span class="dot" style="background:#ef5350"></span> 三阶段</span>
+    <span><span class="dot" style="background:#5c6bc0;border-radius:0 2px 2px 0;width:3px;height:14px"></span> 一阶段</span>
+    <span><span class="dot" style="background:#26a69a;border-radius:0 2px 2px 0;width:3px;height:14px"></span> 二阶段</span>
+    <span><span class="dot" style="background:#ef5350;border-radius:0 2px 2px 0;width:3px;height:14px"></span> 三阶段</span>
   </div>
 
-  <span class="month-label">7月 — 今天开始！</span>
+  <span class="month-label">7月 — 准备期<span class="phase-tag p1">一阶段</span></span>
   <div class="cal">
     <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
-    <div class="day off"></div><div class="day off"></div>
+    <div class="day off"></div><div class="day off"></div><div class="day off"></div>
     <div class="day phase1"><span class="num">30</span><span class="task evening">综应-归纳概括</span></div>
     <div class="day phase1"><span class="num">31</span><span class="task morning">常识速记</span><span class="task noon">资料15题</span><span class="task evening">职测-判断推理</span></div>
   </div>
 
-  <span class="month-label">8月 — 基础夯实 + 专项突破</span>
+  <span class="month-label">8月 — 基础夯实 + 专项突破<span class="phase-tag p1">一阶段</span><span class="phase-tag p2" style="margin-left:2px">二阶段</span></span>
   <div class="cal">
     <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
-    <div class="day off"></div><div class="day off"></div><div class="day off"></div><div class="day off"></div>
+    <div class="day off"></div><div class="day off"></div><div class="day off"></div><div class="day off"></div><div class="day off"></div>
     <div class="day phase1"><span class="num">1</span><span class="task morning">时政速记</span><span class="task noon">数量15题</span><span class="task evening">职测-资料分析</span></div>
     <div class="day phase1"><span class="num">2</span><span class="task morning">—</span><span class="task noon">数推10题</span><span class="task evening">综应-对策建议</span></div>
     <div class="day phase1"><span class="num">3</span><span class="task morning">轻量复习</span><span class="task noon">错题整理</span><span class="task evening">半天学习</span></div>
@@ -210,9 +237,10 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
     <div class="day rest"><span class="num">31</span>模考分析</div>
   </div>
 
-  <span class="month-label">9月 — 专项收尾 + 冲刺模拟</span>
+  <span class="month-label">9月 — 专项收尾 + 冲刺模拟<span class="phase-tag p2">二阶段</span><span class="phase-tag p3" style="margin-left:2px">三阶段</span></span>
   <div class="cal">
     <div class="day header">周一</div><div class="day header">周二</div><div class="day header">周三</div><div class="day header">周四</div><div class="day header">周五</div><div class="day header">周六</div><div class="day header">周日</div>
+    <div class="day off"></div>
     <div class="day phase2"><span class="num">1</span><span class="task morning">范文背诵</span><span class="task noon">薄弱模块</span><span class="task evening">职测专项循环</span></div>
     <div class="day phase2"><span class="num">2</span><span class="task morning">素材积累</span><span class="task noon">常识15题</span><span class="task evening">综应-公文写作</span></div>
     <div class="day phase2"><span class="num">3</span><span class="task morning">范文背诵</span><span class="task noon">资料15题</span><span class="task evening">职测专项循环</span></div>
@@ -234,314 +262,748 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
     <div class="day exam"><span class="num">19</span>考试日！</div>
     <div class="day off"></div><div class="day off"></div>
   </div>
+  </div>
+</div>
+
+<!-- ==================== 范文宝库 ==================== -->
+<div id="tab-essays" class="tab-content">
+  <div class="container">
+  <h1>范文宝库</h1>
+  <p class="subtitle">浙江事业编综应大作文 · 历年真题主题 · 高分范文</p>
+
+  <div class="day-section">
+    <!-- 范文1 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">以科技创新之笔 绘浙江发展新篇</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2024年真题方向 · 新质生产力/科技创新 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2024真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">新质生产力</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">科技创新</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-1')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <!-- 范文2 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">以数字之"智" 赋能治理之"治"</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2023年真题方向 · 数字化改革/基层治理 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2023真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">数字化改革</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">基层治理</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-2')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <!-- 范文3 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">以青春之我 担时代之责</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2022年真题方向 · 青年担当/时代使命 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2022真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">青年担当</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">时代使命</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-3')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <!-- 范文4 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">让青春在乡村振兴中绽放光彩</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2024年4月单招方向 · 青年与乡村振兴 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2024真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">乡村振兴</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">人才下沉</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-4')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <!-- 范文5 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">以营商环境之"优" 促民营经济之"进"</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2023年10月统考方向 · 营商环境/民营经济 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2023真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">营商环境</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">四千精神</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-5')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <!-- 范文6 -->
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h3 style="margin:0 0 4px;font-size:15px;color:#1a2a3a">以"千万工程"经验 绘乡村振兴画卷</h3>
+        <p style="margin:0;font-size:12px;color:#7b8da0">2023年各地单招高频 · 千万工程/乡村振兴 · 约1200字</p>
+        <div style="margin-top:6px">
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">2023真题</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">千万工程</span>
+          <span style="display:inline-block;background:#e8f4f8;color:#0d7377;padding:2px 8px;border-radius:10px;font-size:11px;margin:2px">和美乡村</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="previewEssay('essay-6')" style="background:#0d7377;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">👁️ 预览</button>
+        <button onclick="printTab('essays')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:8px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+      </div>
+    </div>
+    <p style="color:#7b8da0;font-size:12px;text-align:center;margin-top:8px">📌 来源：粉笔/中公/华图浙江事业编综应高分范文，结合历年真题主题整理 · 2025年真题待考后更新</p>
+  </div>
+
+  <!-- 范文预览面板 -->
+  <div id="essay-preview" class="day-section" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h3 id="essay-preview-title" style="margin:0;border:none;padding:0">范文预览</h3>
+      <button onclick="closeEssayPreview()" style="background:#ef5350;color:#fff;border:none;padding:6px 16px;border-radius:4px;font-size:12px;cursor:pointer">✕ 关闭</button>
+    </div>
+    <div id="essay-preview-content" class="content"></div>
+  </div>
+
+  <!-- 隐藏的范文内容 -->
+  <div style="display:none">
+    <!-- 范文1：科技创新 -->
+    <div id="essay-1" data-title="以科技创新之笔 绘浙江发展新篇">
+      <p><strong>【开头】</strong></p>
+      <p>之江潮涌，千帆竞发。在高质量发展建设共同富裕示范区的新征程上，浙江正面临着从"要素驱动"向"创新驱动"转变的关键节点。2024年，浙江明确提出以科技创新塑造发展新优势，加快发展新质生产力。从之江实验室到西湖大学，从"产业大脑"到"未来工厂"，浙江始终把科技创新作为引领发展的第一动力。站在新的历史起点上，唯有牵住科技创新的"牛鼻子"，才能在新一轮竞争中抢占先机、赢得主动，为浙江现代化建设注入澎湃动能。</p>
+      <p><strong>【分论点一：科技创新是点燃产业升级的"强引擎"】</strong></p>
+      <p>浙江作为制造业大省，传统产业占比高、转型压力大。从"机器换人"到"产业大脑"，从"未来工厂"到"灯塔工厂"，浙江以数字技术赋能传统制造，推动产业向高端化、智能化、绿色化迈进。2024年，浙江数字经济核心产业增加值占GDP比重突破29%，"产业大脑+未来工厂"模式在全国推广。杭州城西科创大走廊集聚了全省60%以上的国家科技奖获奖项目，宁波甬江科创区成为新材料领域创新高地。实践证明，只有以科技创新驱动产业升级，才能让浙江制造迈向浙江智造、浙江创造，让"蛋糕"做得更大、更有含金量。</p>
+      <p><strong>【分论点二：科技创新是激活人才活力的"催化剂"】</strong></p>
+      <p>创新的根基在人才，人才的活力在机制。浙江深入推进"鲲鹏行动"，打造全球人才蓄水池，以"三支队伍"建设为抓手，全面加强高素质干部队伍、高水平创新型人才和企业家队伍、高素养劳动者队伍建设。之江实验室面向全球招揽顶尖科学家，西湖大学开创社会力量办研究型大学先河，杭州国际人才创新创业园吸引海归人才超万人。浙江还率先推出"揭榜挂帅"机制，让能者上、庸者下，形成"以才引才、以才聚才"的良性生态。唯有厚植人才沃土，才能让创新源泉充分涌流，让更多"千里马"在之江大地上竞相奔腾。</p>
+      <p><strong>【分论点三：科技创新需要构建全域协同的"生态圈"】</strong></p>
+      <p>科技创新不是单打独斗，而是系统工程。浙江着力打通"基础研究—技术攻关—成果转化"全链条，强化企业创新主体地位。2024年，浙江研发投入强度达3.2%，企业研发投入占全社会研发投入比重超80%，均居全国前列。杭州、宁波、温州、嘉兴等地构建"产学研用金、才政介美云"十联动创新生态，让更多科技成果从"实验室"走向"生产线"，从"书架"走上"货架"。同时，浙江深化"科技成果转化集成改革"，赋予科研人员更大自主权，让创新者"名利双收"，让创新活力竞相迸发。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>惟创新者进，惟创新者强，惟创新者胜。从"八八战略"到"重要窗口"，从"千万工程"到"共同富裕示范区"，浙江的每一步跨越都离不开创新驱动。站在新的历史起点上，浙江要以更大力度推进科技创新，加快发展新质生产力，让创新之光照亮前行之路，以科技之笔绘就"重要窗口"的壮美画卷，在高质量发展中奋力推进中国式现代化浙江实践。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2024年4月27日浙江事业编统考真题方向 · 新质生产力/科技创新 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+
+    <!-- 范文2：数字化改革 -->
+    <div id="essay-2" data-title="以数字之智 赋能治理之治">
+      <p><strong>【开头】</strong></p>
+      <p>数据多跑路，群众少跑腿。在数字化浪潮席卷全球的今天，浙江作为全国数字化改革的先行省，以"数字浙江"建设为总牵引，推动政府治理、经济发展、社会服务全面转型。从"最多跑一次"到"一次都不跑"，从杭州"城市大脑"到"浙里办"千万用户，从未来社区到智慧乡村，浙江用实践证明：数字化不是冷冰冰的技术堆砌，而是有温度、有质感的民生工程。站在新的历史方位，要以数字之"智"赋能治理之"治"，让数字化改革成果更多更公平地惠及全体人民。</p>
+      <p><strong>【分论点一：以数字之"智"提升政务服务效能】</strong></p>
+      <p>政务服务是群众感受治理能力的第一窗口。浙江"浙里办"App整合省、市、县三级3600余项政务服务事项，352项民生事项实现"智能秒办"，注册用户突破1.2亿，日活超3000万。从"找部门"到"找政府"，从"人找服务"到"服务找人"，浙江重塑了政务服务流程。杭州"亲清在线"平台实现惠企政策"一键兑付"，累计兑付资金超500亿元，惠及企业60余万家。衢州"县乡一体、条抓块统"改革打通基层治理"最后一公里"。数字技术让政务服务从"能办"向"好办、易办、智办"升级，真正实现了"让数据多跑路、让群众少跑腿"。</p>
+      <p><strong>【分论点二：以数字之"智"破解城市治理难题】</strong></p>
+      <p>城市治理千头万绪，数字化为破解"城市病"提供了新路径。杭州"城市大脑"覆盖交通、医疗、政务、文旅、环保等48个应用场景，AI算法对全市2300余个路口信号灯实时调控，主城区通行效率提升15%，拥堵指数从2.1降至1.6。"先看病后付费"信用就医模式累计服务超8000万人次，平均缩短就诊等待时间40分钟。"智慧停车"整合全市泊位资源，实现"抬头见泊位、停车不再难"。数字技术让城市治理从"经验驱动"转向"数据驱动"，从"被动响应"转向"主动预防"，让城市更聪明、更智慧、更宜居。</p>
+      <p><strong>【分论点三：以数字之"智"赋能基层社会治理】</strong></p>
+      <p>基层是社会治理的"最后一公里"。浙江创新发展新时代"枫桥经验"，打造"智慧枫桥"数字平台，实现矛盾纠纷在线申报、在线调解、在线回访，在线调解占比超40%。"基层治理四平台"将数字化触角延伸到村社一级，实现"小事不出村、大事不出镇"。未来社区建设覆盖"一老一小"智慧服务场景，社区微公交、智慧养老、远程医疗等服务让居民在家门口享受数字化便利。数字技术让基层治理更精准、更高效、更有温度，真正实现了"民有所呼、我有所应，民有所需、我有所为"。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>数字化改革是一场深刻的自我革命，没有完成时，只有进行时。从"数字浙江"到"数字中国"，浙江始终勇立潮头、先行先试。站在新的历史起点上，要以更大力度推进数字化改革，让数字技术从"盆景"变成"风景"，从"试点"走向"全域"，用数字之光照亮共同富裕之路，以数字之"智"书写浙江现代化建设的崭新篇章，为全国贡献更多浙江经验、浙江样本。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2023年浙江事业编统考真题方向 · 数字化改革/基层治理 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+
+    <!-- 范文3：青年担当 -->
+    <div id="essay-3" data-title="以青春之我 担时代之责">
+      <p><strong>【开头】</strong></p>
+      <p>青年兴则国家兴，青年强则国家强。在浙江奋力推进"两个先行"——中国特色社会主义共同富裕先行和省域现代化先行的新征程上，广大青年干部当以"功成不必在我，功成必定有我"的担当，以"弄潮儿向涛头立"的勇气，把个人理想融入浙江发展大局，在之江大地上书写无愧于时代的青春答卷。从南湖红船到之江潮涌，从"八八战略"到"重要窗口"，浙江的发展史就是一代代青年接续奋斗的创业史。</p>
+      <p><strong>【分论点一：坚定理想信念，筑牢信仰之基】</strong></p>
+      <p>理想信念是青年成长的第一粒扣子。浙江是红船精神的发源地，1921年，一群平均年龄只有28岁的青年在南湖红船上宣告了中国共产党的诞生。百年后的今天，红船精神依然照亮着浙江青年的前行之路。新时代的浙江青年，要将坚定理想信念作为终身课题，深入学习"八八战略"的丰富内涵，深刻领悟"两个确立"的决定性意义，从"千万工程"的为民情怀中汲取精神力量，从"枫桥经验"的群众路线中感悟初心使命。唯有信念坚定，才能在风雨中不动摇、在诱惑前不迷失、在困难前不退缩，才能在大是大非面前旗帜鲜明，在风浪考验面前无所畏惧。</p>
+      <p><strong>【分论点二：锤炼过硬本领，厚植实干之能】</strong></p>
+      <p>空谈误国，实干兴邦。浙江青年要主动到改革发展的主战场、维护稳定的第一线、服务群众的最前沿去经风雨、见世面、壮筋骨。在数字化改革浪潮中，青年干部要主动学习数字技术，提升用数据说话、用数据决策、用数据管理的能力。在共同富裕示范区建设中，青年人才要深入基层、扎根乡村，以"地瓜经济"的开放思维链接全球资源，以"山海协作"的协作精神推动区域协调发展。在"三支队伍"建设中，青年劳动者要弘扬工匠精神，追求精益求精，努力成为知识型、技能型、创新型劳动者。唯有本领过硬，才能在时代洪流中站稳脚跟、赢得主动。</p>
+      <p><strong>【分论点三：勇于担当作为，践行初心使命】</strong></p>
+      <p>担当是青年最亮丽的底色。浙江青年要以"时时放心不下"的责任感，主动到艰苦环境、复杂局面中去磨炼。在乡村振兴一线，青年驻村干部带领群众发展特色产业，让"千万工程"的成果惠及千家万户。在科技创新前沿，青年科研人员勇闯"无人区"，在之江实验室、西湖大学等平台上攻克"卡脖子"技术。在基层治理末梢，青年网格员用脚步丈量民情，用真心换取民心，成为新时代"枫桥经验"的践行者。浙江青年用实干诠释担当，用奋斗定义青春，在平凡的岗位上创造不平凡的业绩。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>时代召唤青年，青年创造未来。站在"八八战略"实施二十多年的新起点上，浙江青年生逢其时、重任在肩。让我们以"青春之我"担"时代之责"，以"奋斗之我"筑"共富之路"，在之江大地上挥洒青春汗水，在"两个先行"的伟大实践中绽放青春光彩，让青春在全面建设社会主义现代化国家的火热实践中开出绚丽之花。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2022年浙江事业编统考真题方向 · 青年担当/时代使命 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+
+    <!-- 范文4：青年与乡村振兴 -->
+    <div id="essay-4" data-title="让青春在乡村振兴中绽放光彩">
+      <p><strong>【开头】</strong></p>
+      <p>民族要复兴，乡村必振兴。2024年中央一号文件再次聚焦"三农"工作，浙江作为"千万工程"的发源地，始终把乡村振兴摆在突出位置。从科技特派员扎根田间地头，到大学生返乡创业成为"新农人"，从选调生驻村挥洒汗水，到青年农创客直播带货——越来越多的青年人才选择下沉基层，在广袤乡村书写青春答卷。在浙江高质量发展建设共同富裕示范区的新征程上，青年人才正是推动乡村全面振兴的生力军。</p>
+      <p><strong>【分论点一：青年人才为乡村振兴注入"智慧活水"】</strong></p>
+      <p>乡村振兴，关键在人。浙江深入实施"两进两回"行动，推动科技进乡村、资金进乡村，青年回农村、乡贤回农村。全省累计选派科技特派员1.8万人次，推广新技术新品种1.5万余项，带动农民增收超百亿元。安吉余村吸引300余名青年返乡创业，打造"数字游民公社"，年接待游客超百万人次。义乌"青创农场"孵化青年农创项目200余个，年销售额突破5亿元。这些青年人才带着新技术、新理念、新模式回到乡村，让传统农业插上数字翅膀，让古老乡村焕发青春活力。</p>
+      <p><strong>【分论点二：青年人才为基层治理增添"青春力量"】</strong></p>
+      <p>基层治理现代化离不开青年参与。浙江"千万工程"迭代升级为"千村引领、万村共富"，需要更多懂治理、善创新的青年力量。全省3000余名选调生扎根基层，在乡村一线经风雨、壮筋骨。诸暨"枫桥经验"青年宣讲团走村入户，用"青言青语"讲好法治故事。杭州"乡村CEO"计划招募青年经营人才，用市场化思维运营集体经济，带动村集体年均增收超30万元。青年人才将数字化思维、品牌化理念带入乡村治理，让"小事不出村、大事不出镇"的枫桥经验在新时代焕发新光彩。</p>
+      <p><strong>【分论点三：厚植青年人才扎根乡村的"沃土"】</strong></p>
+      <p>让青年人才"下得去、留得住、干得好"，需要系统化的制度保障。浙江出台"乡村振兴青年人才十条"，从创业扶持、住房保障、子女教育等方面为青年人才解决后顾之忧。湖州设立"乡村振兴创客基金"，对青年农创项目给予最高50万元创业补贴。丽水推出"山居青年"计划，为返乡青年提供免费创业空间和住房。嘉兴打造"青创乡村"品牌，让青年人才"拎包入驻"即可创业。唯有厚植人才沃土，才能让更多青年人才在乡村振兴的舞台上大显身手、建功立业。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>广阔乡村，大有可为。从"千万工程"到"万村共富"，浙江的乡村正在经历前所未有的蝶变。站在新的历史起点上，要以更大力度引导青年人才向基层流动、向乡村集聚，让青春之花在之江大地的田野上绚丽绽放，让青年力量成为推动乡村全面振兴的最强引擎，为浙江高质量发展建设共同富裕示范区贡献青春力量。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2024年4月浙江事业编单招真题方向 · 青年与乡村振兴 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+
+    <!-- 范文5：营商环境 -->
+    <div id="essay-5" data-title="以营商环境之优 促民营经济之进">
+      <p><strong>【开头】</strong></p>
+      <p>民营经济是浙江经济的最大特色和最大优势。从"走遍千山万水、说尽千言万语、想尽千方百计、吃尽千辛万苦"的"四千精神"，到"最多跑一次"改革的全国标杆，浙江始终把优化营商环境作为推动民营经济高质量发展的关键一招。在浙江奋力推进"两个先行"的新征程上，要以营商环境之"优"，促民营经济之"进"，让更多市场主体在浙江这片热土上生根发芽、茁壮成长。</p>
+      <p><strong>【分论点一：以改革"减法"换市场活力"加法"】</strong></p>
+      <p>好的营商环境就是生产力。浙江以"放管服"改革为牵引，持续为市场主体松绑减负。从"最多跑一次"到"一次都不跑"，从"证照分离"到"一网通办"，浙江政务服务事项网上可办率达98%以上。杭州"亲清在线"平台实现惠企政策"一键兑付"，累计兑付超500亿元，惠及企业60余万家。温州创建新时代"两个健康"先行区，推出"民营经济金融服务指数"，小微企业贷款余额突破万亿元。政府权力的"减法"换来了市场活力的"乘法"，浙江市场主体总量突破1000万户，平均每7个人就有一个老板。</p>
+      <p><strong>【分论点二：以法治"护航"稳企业预期"信心"】</strong></p>
+      <p>法治是最好的营商环境。浙江出台《浙江省民营企业发展促进条例》，这是全国首部促进民营企业发展的省级地方性法规。条例明确"三个平等"——保障民营企业平等准入、平等获取要素、平等受到法律保护。金华设立"企业法律服务中心"，为企业提供"法治体检"服务。宁波推行"首违不罚"清单制度，让执法既有力度又有温度。台州构建"亲清政商关系"评价体系，让政商交往"亲"而有度、"清"而有为。法治化营商环境让企业吃下"定心丸"，心无旁骛谋发展。</p>
+      <p><strong>【分论点三：以服务"温度"提企业发展"速度"】</strong></p>
+      <p>营商环境好不好，企业最有发言权。浙江创新"店小二"式服务理念，从"企业找政策"变为"政策找企业"。全省推行"驻企服务员"制度，1.5万名干部"一对一"联系服务重点企业。绍兴建立"企业码"服务平台，实现企业诉求"码上办、马上办"。嘉兴打造"长三角一体化"营商环境，推动跨区域政务通办。义乌推出"义新欧"班列一站式通关服务，让"浙江制造"更快走向世界。有温度的服务，让企业感受到"雪中送炭"的温暖、"雨中打伞"的贴心，激发了市场主体创新创业的澎湃动力。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>营商环境没有最好，只有更好。从"四千精神"到"创业创新"，浙江民营经济的发展史就是一部不断优化营商环境的改革史。站在新的历史起点上，要以"一号改革工程"为牵引，持续擦亮浙江营商环境的"金字招牌"，让浙江成为各类市场主体的向往之地、兴业之地、成功之地，以营商环境之"优"促民营经济之"进"，为高质量发展建设共同富裕示范区注入强劲动力。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2023年10月浙江事业编统考真题方向 · 营商环境/民营经济 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+
+    <!-- 范文6：千万工程 -->
+    <div id="essay-6" data-title="以千万工程经验 绘乡村振兴画卷">
+      <p><strong>【开头】</strong></p>
+      <p>"千万工程"是习近平同志在浙江工作期间亲自谋划、亲自部署、亲自推动的重大决策。二十余年来，浙江坚持一张蓝图绘到底、一任接着一任干，造就了万千美丽乡村，造福了万千农民群众。从"千村示范、万村整治"到"千村引领、万村共富"，"千万工程"不仅改变了浙江乡村的面貌，更探索出一条中国式乡村现代化的实践路径。在新时代新征程上，要深入总结"千万工程"经验，绘就宜居宜业和美乡村的壮美画卷。</p>
+      <p><strong>【分论点一：坚持生态优先，擦亮乡村"绿美底色"】</strong></p>
+      <p>绿水青山就是金山银山。"千万工程"从一开始就把改善农村人居环境作为突破口，从垃圾收集、污水治理、卫生改厕等"小事"做起，让浙江乡村实现了从"室内现代化、室外脏乱差"到"村村有美景、户户有风景"的美丽蝶变。安吉余村关停矿山后，依托好山好水发展生态旅游和乡村民宿，村集体收入从不足百万元增长到超千万元。淳安下姜村从"穷山沟"变身"绿富美"，年接待游客超40万人次。桐庐"美丽乡村"建设覆盖全县183个行政村，成功创建全国首个"全域旅游示范县"。实践证明，保护生态就是保护生产力，改善环境就是发展生产力。</p>
+      <p><strong>【分论点二：坚持产业为基，激活乡村"造血功能"】</strong></p>
+      <p>乡村振兴，产业必振兴。浙江以"千万工程"为抓手，推动乡村产业从"卖产品"向"卖风景""卖文化""卖体验"转变。义乌"电商村"超过200个，年交易额超千亿元。西湖龙井、安吉白茶、临安山核桃等"浙字号"农产品品牌价值持续攀升。丽水"山"字系品牌——"丽水山耕""丽水山居""丽水山景"走出了一条山区生态产品价值实现的新路。德清莫干山"洋家乐"民宿集群年营业收入超30亿元，带动周边村民人均增收超5万元。产业兴旺让乡村有了"造血"能力，让农民在家门口就能就业增收。</p>
+      <p><strong>【分论点三：坚持共建共享，提升乡村"治理效能"】</strong></p>
+      <p>"千万工程"不仅是环境整治工程，更是基层治理变革。浙江将"枫桥经验"融入乡村治理，推动自治、法治、德治、智治"四治融合"。全省建成"未来乡村"1000余个，数字化服务延伸到村社一级。余杭小古城村"众人的事情由众人商量"的民主协商模式写入中央文件。象山"村民说事"制度让干部与群众面对面，把矛盾化解在基层。桐乡"三治融合"经验获评全国乡村治理典型案例。数字赋能乡村治理，让"小事不出村、大事不出镇"成为浙江乡村治理的常态。</p>
+      <p><strong>【结尾】</strong></p>
+      <p>从"千万工程"到"万村共富"，浙江乡村的蝶变之路是中国式农业农村现代化的生动缩影。站在新的历史起点上，要持续深化"千万工程"经验，以"千村引领"带动"万村共富"，让浙江乡村成为宜居宜业的和美家园，让广大农民在共同富裕的道路上一个都不掉队，为全国乡村振兴贡献更多浙江智慧、浙江方案。</p>
+      <p style="color:#7b8da0;font-size:12px;margin-top:12px;border-top:1px solid #e8edf2;padding-top:8px">📌 2023年浙江事业编各地单招高频真题方向 · 千万工程/乡村振兴 · 全文约1200字 · 每天背诵1段，5天背完</p>
+    </div>
+  </div>
+  </div>
 </div>
 
 <!-- ==================== 学习资料 ==================== -->
 <div id="tab-materials" class="tab-content">
-  <h1>每日学习资料</h1>
-  <p class="subtitle">点击左侧日期切换，每晚自动更新</p>
-
+  <div class="container">
+  <h1>学习资料</h1>
+  <p class="subtitle">按日期归档每日早中晚学习内容 · 点击日期查看</p>
   <div class="materials-layout">
-    <div class="materials-sidebar">
+    <div class="materials-sidebar" id="materials-sidebar">
       <h3>📅 日期导航</h3>
-      <a href="#d0730" onclick="showDay('0730')">7月30日 周三</a>
-      <a href="#d0731" onclick="showDay('0731')">7月31日 周四</a>
-      <a href="#d0801" onclick="showDay('0801')">8月1日 周五</a>
-      <a href="#d0802" onclick="showDay('0802')">8月2日 周六</a>
-      <a href="#d0803" onclick="showDay('0803')">8月3日 周日</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0730')">7月30日 周四</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0731')">7月31日 周五</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0801')">8月1日 周六</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0802')">8月2日 周日</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0803')">8月3日 周一</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0804')">8月4日 周二</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0805')">8月5日 周三</a>
     </div>
-
-    <div class="materials-main">
-      <div id="d0730" class="day-section">
-        <h3>7月30日 周三 <span class="badge">基础夯实</span></h3>
-        <div class="block">
-          <h4>🌅 晨读播报</h4>
-          <div class="content">
-
-            <p><strong>📰 时政速览（5min）</strong></p>
-            <p><strong>【全国】二十届三中全会改革落地</strong></p>
-            <p>三中全会（7月15-18日）闭幕后，改革举措密集出台：<br>
-            · <strong>财税改革</strong>：消费税征收环节后移，地方附加税开征试点——浙江作为数字经济大省，消费税后移直接影响平台经济税收格局<br>
-            · <strong>新型城镇化</strong>：推进农业转移人口市民化，杭州作为超大城市，落户政策有望进一步放宽</p>
-            <blockquote>综应应用：大作文可引用"改革为了人民、改革依靠人民"作为论点支撑</blockquote>
-
-            <p><strong>【全国】上半年经济数据出炉</strong></p>
-            <p>GDP 同比增长 5.2%，其中数字经济核心产业增长 12.8%，新能源汽车产量增长 35%。浙江数字经济增加值占 GDP 比重超 28%，居全国前列。消费复苏态势明显，但房地产市场仍处调整期。</p>
-            <blockquote>综应应用：对策建议题可用"数字经济"和"新能源"作为产业升级案例</blockquote>
-
-            <p><strong>【浙江】杭州"城市大脑 2.0"上线</strong></p>
-            <p>覆盖交通、医疗、政务三大场景，实现"一网通办"。浙里办用户突破 1.2 亿，日活超 3000 万。这是浙江"数字化改革"的标志性成果，也是"数字政府"建设的全国样板。</p>
-            <blockquote>综应应用：归纳概括"数字治理经验"、大作文"科技赋能基层治理"</blockquote>
-
-            <p><strong>【浙江】"千万工程"新三年行动</strong></p>
-            <p>从"千村示范、万村整治"升级为"千村引领、万村共富"。重点：和美乡村建设、乡村产业振兴、城乡融合发展。2026 年目标：全省建成 1000 个未来乡村。</p>
-            <blockquote>综应应用：公文写作题的最强浙江素材，对策建议可用"产业兴旺、生态宜居、乡风文明"三句话展开</blockquote>
-
-            <p><strong>【浙江】枫桥经验 60 周年</strong></p>
-            <p>"小事不出村，大事不出镇，矛盾不上交，就地化解"——这是浙江诸暨枫桥镇 1963 年首创的基层治理模式，60 年来历久弥新。新时代"枫桥经验"强调：自治、法治、德治、智治"四治融合"。</p>
-            <blockquote>综应应用：社会治理类题目的万能案例，体现"预防为主、调解优先"的治理理念</blockquote>
-
-            <p style="margin-top:14px"><strong>📝 成语积累（5min）</strong></p>
-            <p><strong>1. 因势利导</strong> — 顺着事物发展趋势加以引导<br>造句：杭州因势利导发展数字经济，成为全国标杆。<br><span style="color:#7b8da0">真题用法：常用于对策建议题，表达"顺应规律、主动作为"</span></p>
-            <p><strong>2. 标本兼治</strong> — 既要解决表面问题，又要根治深层原因<br>造句：城市交通拥堵需要标本兼治，限行只是权宜之计。<br><span style="color:#7b8da0">真题用法：综应对策题高频词，体现系统性思维</span></p>
-
-            <p style="margin-top:14px"><strong>💡 常识速记 — 浙江省情（5min）</strong></p>
-            <p><strong>【浙江地理】11 个地级市 + 四大都市区</strong></p>
-            <p><strong>11 市：</strong>杭州、宁波、温州、嘉兴、湖州、绍兴、金华、衢州、舟山、台州、丽水<br>
-            <strong>四大都市区：</strong>杭州都市区、宁波都市区、温州都市区、金义（金华-义乌）都市区</p>
-            <p style="font-size:12px;color:#7b8da0">速记口诀：杭宁温嘉湖，绍金衢舟台丽 — 杭宁温金四都市</p>
-            <p style="margin-top:8px"><strong>【浙江经济】关键数据</strong></p>
-            <p>数字经济核心产业占 GDP 比重超 28%，全国第一 | 人均 GDP 全国省区第一 | 民营企业 500 强数量连续 25 年全国第一</p>
-            <p style="font-size:12px;color:#7b8da0">常识判断常考：浙江"三个第一"——数字经济占比、人均GDP、民企500强数量</p>
-            <p style="margin-top:4px;font-size:11px;color:#b0c4d0">常识速记轮换表：周一地理 | 周二政策 | 周三文化 | 周四经济 | 周五人物</p>
-
-            <p style="margin-top:14px"><strong>📌 昨日回顾（2min）</strong></p>
-            <p style="color:#7b8da0;font-size:12px;">今天是备考第一天，暂无昨日内容。明天开始会回顾前一天错题和薄弱点。</p>
-
-          </div>
-        </div>
-        <div class="block">
-          <h4>🍜 午休刷题 — 判断推理 15题</h4>
-          <div class="content">
-            <p><strong>一、图形推理</strong></p>
-            <p><strong>1.</strong> 从所给四个选项中，选择最合适的一个填入问号处：</p>
-            <div class="shapes">
-              <span><svg width="24" height="24"><circle cx="12" cy="12" r="9" fill="none" stroke="#5c6bc0" stroke-width="2.5"/></svg></span>
-              <span><svg width="24" height="24"><rect x="3" y="3" width="18" height="18" fill="none" stroke="#5c6bc0" stroke-width="2.5"/></svg></span>
-              <span><svg width="24" height="24"><polygon points="12,3 22,20 2,20" fill="none" stroke="#5c6bc0" stroke-width="2.5"/></svg></span>
-              <span><svg width="24" height="24"><circle cx="12" cy="12" r="9" fill="none" stroke="#5c6bc0" stroke-width="2.5"/></svg></span>
-              <span><svg width="24" height="24"><rect x="3" y="3" width="18" height="18" fill="none" stroke="#5c6bc0" stroke-width="2.5"/></svg></span>
-              <span class="q">？</span>
-            </div>
-            <div class="options"><span>A.△</span><span>B.○</span><span>C.□</span><span>D.◇</span></div>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p style="margin-top:12px"><strong>2.</strong> 下列图形中，与众不同的是：</p>
-            <div class="shapes">
-              <span>A.田</span><span>B.申</span><span>C.由</span><span>D.甲</span>
-            </div>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p style="margin-top:12px"><strong>3.</strong> 数列：2, 4, 8, 14, 22, ？</p>
-            <div class="options"><span>A.28</span><span>B.30</span><span>C.32</span><span>D.34</span></div>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p style="margin-top:12px"><strong>4.</strong> 左边给定的是纸盒外表面展开图，右边哪一项能由它折叠而成？</p>
-            <div class="cube-unfold">
-              <div class="face empty"></div>
-              <div class="face"><svg width="20" height="20"><line x1="2" y1="18" x2="18" y2="2" stroke="#5c6bc0" stroke-width="2"/></svg></div>
-              <div class="face empty"></div>
-              <div class="face"><svg width="20" height="20"><line x1="2" y1="10" x2="18" y2="10" stroke="#5c6bc0" stroke-width="2"/></svg></div>
-              <div class="face"><svg width="20" height="20"><circle cx="10" cy="10" r="4" fill="none" stroke="#5c6bc0" stroke-width="2"/></svg></div>
-              <div class="face"><svg width="20" height="20"><line x1="10" y1="2" x2="10" y2="18" stroke="#5c6bc0" stroke-width="2"/></svg></div>
-              <div class="face empty"></div>
-              <div class="face"><svg width="20" height="20"><line x1="2" y1="2" x2="18" y2="18" stroke="#5c6bc0" stroke-width="2"/><line x1="18" y1="2" x2="2" y2="18" stroke="#5c6bc0" stroke-width="2"/></svg></div>
-              <div class="face empty"></div>
-            </div>
-            <p style="font-size:12px;color:#7b8da0">各面图案：前=╳ | 后=╱ | 左=— | 右=│ | 底=○</p>
-            <p style="margin-top:4px">折叠后，以下哪项描述是正确的？</p>
-            <p>A. 前和后两个面相邻<br>
-            B. 左和右两个面相邻<br>
-            C. 前和左两个面相邻<br>
-            D. 前和右两个面不相邻</p>
-            <p style="font-size:12px;color:#7b8da0">提示：展开图中相隔一行的两个面是相对面，折叠后不会相邻。</p>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>二、定义判断</strong></p>
-            <p><strong>5.</strong> "搭便车效应"：个体不付出成本也能享受集体收益，缺乏为集体利益行动的激励。属于该效应的是：<br>
-            A.小区业主集资修电梯，三楼住户拒绝出资但每天使用<br>
-            B.公司员工自愿加班，获得年终奖金<br>
-            C.村民自发修路，每家每户都出了劳动力<br>
-            D.学生参加竞赛，个人努力获得一等奖</p>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>6.</strong> "逆向选择"：信息不对称下，劣质商品驱逐优质商品。属于的是：<br>
-            A.二手车市场，好车卖不出去，坏车充斥<br>
-            B.超市打折促销，吸引大量顾客<br>
-            C.求职者简历造假，获得更好机会<br>
-            D.餐馆推出特价菜，带动其他菜品销量</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>7.</strong> "峰终定律"：评价取决于峰值和结束时刻的感受。应用了该定律的是：<br>
-            A.医院就诊结束后赠送小礼品<br>
-            B.公司按全年平均绩效发年终奖<br>
-            C.餐厅在用餐高潮上招牌菜，离店送冰淇淋<br>
-            D.银行按季度统计客户满意度</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>三、类比推理</strong></p>
-            <p><strong>8.</strong> 医生：医院 :: 教师：？<br>
-            A.学校　B.学生　C.课本　D.教育</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>9.</strong> 浙江：杭州 :: 江苏：？<br>
-            A.苏州　B.南京　C.无锡　D.上海</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>10.</strong> 繁华：荒凉 :: 热烈：？<br>
-            A.热情　B.冷漠　C.温暖　D.激动</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>四、逻辑判断</strong></p>
-            <p><strong>11.</strong> 某单位有人喜欢打篮球，有人喜欢踢足球。以下哪项一定为真？<br>
-            A.有人不喜欢打篮球　B.有人既喜欢篮球又喜欢足球<br>
-            C.有人至少喜欢其中一种　D.不能确定</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>12.</strong> 所有杭州事业编考生都考职测，有些考生也考综应。可以推出：<br>
-            A.所有考职测的都考综应　B.有些考职测的也考综应<br>
-            C.不考综应的一定不考职测　D.考职测的不一定考综应</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>13.</strong> 某市单双号限行后拥堵指数下降15%。最能削弱"限行有效"的是：<br>
-            A.同期新增3条地铁　B.很多市民买第二辆车<br>
-            C.限行前拥堵指数已在下降　D.市民广泛支持限行</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>14.</strong> 甲、乙、丙三人只有一人会游泳。甲说："我会。"乙说："我不会。"丙说："甲不会。"只有一人说真话，会游泳的是：<br>
-            A.甲　B.乙　C.丙　D.无法确定</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-            <p><strong>15.</strong> "杭州数字经济核心产业增加值占GDP超28%，居全国前列。"最能支持：<br>
-            A.杭州是全国数字经济最发达城市　B.数字经济是杭州重要引擎<br>
-            C.杭州GDP总量全国第一　D.杭州其他产业正在萎缩</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <blockquote>每题后面有输入框，直接填写答案。做完后回到 Claude 说「对答案」，我帮你批改。</blockquote>
-          </div>
-        </div>
-        <div class="block">
-          <h4>🌙 晚间学习 — 综应·归纳概括</h4>
-          <div class="content">
-
-            <p><strong>一、题型认知</strong></p>
-            <p>归纳概括是综应最基础也是最重要的题型，通常出现在第一题。核心能力：从给定材料中提取关键信息，用简洁准确的语言概括。浙江材料通常涉及本土案例，要求 150-300 字。</p>
-
-            <p style="margin-top:12px"><strong>二、答题三步法</strong></p>
-            <table>
-              <tr><th>步骤</th><th>做什么</th><th>时间</th></tr>
-              <tr><td>1. 审题</td><td>明确概括对象（问题/原因/做法/影响）</td><td>1min</td></tr>
-              <tr><td>2. 读材料</td><td>通读材料，圈画关键词句</td><td>3min</td></tr>
-              <tr><td>3. 归纳</td><td>合并同类项，归纳为 3-5 个要点</td><td>3min</td></tr>
-              <tr><td>4. 书写</td><td>每条"总括句 + 具体内容"，分条作答</td><td>5min</td></tr>
-            </table>
-
-            <p style="margin-top:12px"><strong>三、真题演练</strong></p>
-            <div style="background:#f8fafb;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:6px 0;">
-              <p style="margin:0 0 8px"><strong>📄 材料：</strong></p>
-              <p style="margin:0 0 10px;line-height:1.9">材料一：杭州"城市大脑"始建于2016年，是国内首个城市级数字治理平台。经过八年迭代，目前已覆盖交通、医疗、政务、文旅、环保等48个应用场景，日均处理数据超1.2亿条。在交通领域，通过AI算法对全市2300余个路口信号灯进行实时调控，主城区早晚高峰通行效率提升15%，拥堵指数从2.1降至1.6。在医疗领域，首创"先看病后付费"信用就医模式，累计服务患者超8000万人次，平均缩短就诊等待时间40分钟。在政务领域，"浙里办"App整合了省、市、县三级3600余项政务服务事项，352项民生事项实现"智能秒办"，群众办事从"最多跑一次"升级为"一次都不跑"。</p>
-              <p style="margin:0 0 10px;line-height:1.9">材料二：为确保"城市大脑"持续高效运转，杭州市出台了《杭州城市大脑赋能城市治理促进条例》，这是全国首部城市大脑地方性法规。同时，杭州建立了"政府主导、企业参与、科研支撑"的协同机制，与阿里巴巴、浙江大学等共建联合实验室，累计投入研发资金超50亿元。通过"城市大脑"建设，杭州数字经济核心产业增加值占GDP比重从2016年的22%提升至2024年的28.5%，连续多年位居全国城市首位。</p>
-              <p style="margin:0 0 10px;line-height:1.9">材料三：杭州"城市大脑"模式已成功推广至上海、成都、昆明等全国28个省份的200余座城市。2024年，杭州"城市大脑"入选联合国"全球数字政府最佳实践案例"，成为展示中国数字化改革成果的重要窗口。</p>
-              <p style="margin:0"><strong>❓ 问题：</strong>根据材料，概括杭州"城市大脑"建设的主要做法。（200字以内）</p>
-            </div>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<textarea style="width:100%;height:50px;padding:6px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;resize:vertical;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'" placeholder="在这里写下你的答案..."></textarea></p>
-            <details style="margin-top:6px"><summary style="cursor:pointer;color:#14a3a8;font-weight:600;">点击查看参考答案</summary>
-            <div style="background:#f0faf9;border-radius:6px;padding:10px;margin-top:6px;font-size:13px;line-height:1.8">杭州"城市大脑"建设主要做法：<strong>1. 拓展应用场景</strong>，覆盖交通、医疗、政务等48个领域，日均处理数据超1.2亿条；<strong>2. 智慧交通治理</strong>，AI调控2300余个路口信号灯，通行效率提升15%，拥堵指数降至1.6；<strong>3. 优化医疗服务</strong>，首创"先看病后付费"，缩短就诊等待40分钟，惠及8000万人次；<strong>4. 深化政务改革</strong>，整合3600余项服务，352项"智能秒办"，实现"一次都不跑"；<strong>5. 强化制度保障</strong>，出台全国首部城市大脑地方性法规，建立政企研协同机制，投入研发资金超50亿元；<strong>6. 推动模式推广</strong>，输出至全国200余座城市，入选联合国最佳实践案例。（199字）</div></details>
-
-            <p style="margin-top:14px"><strong>四、常见错误</strong></p>
-            <table>
-              <tr><th>错误</th><th>示例</th><th>纠正</th></tr>
-              <tr><td>照抄原文</td><td>"AI算法实时调控信号灯"</td><td>概括为"智慧交通治理"</td></tr>
-              <tr><td>遗漏要点</td><td>只写了交通和政务</td><td>医疗也是独立要点</td></tr>
-              <tr><td>超字数</td><td>写了 200+ 字</td><td>控制在限定字数内</td></tr>
-              <tr><td>无总括句</td><td>直接罗列细节</td><td>每点先写总括句</td></tr>
-            </table>
-
-            <p style="margin-top:14px"><strong>五、作业</strong></p>
-            <div style="background:#f8fafb;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:6px 0;">
-              <p style="margin:0 0 8px"><strong>📄 材料：</strong></p>
-              <p style="margin:0 0 10px;line-height:1.9">诸暨市枫桥镇在社会治理中，探索建立了"一中心四平台"的矛盾纠纷多元化解体系。"一中心"即镇级社会治理中心，统筹协调全镇矛盾纠纷调解工作；"四平台"包括村级调解平台、行业调解平台、专业调解平台和在线调解平台。该镇整合公安、司法、信访、法院、检察院等12个部门力量，组建了专职调解员队伍28人，从退休干部、教师、律师中选聘兼职调解员156人，覆盖全镇29个行政村和3个社区。2024年，全镇共受理各类矛盾纠纷1826件，调解成功率达98.7%，其中85%的纠纷在村级层面得到化解，12%在镇级层面化解，实现了"小事不出村、大事不出镇、矛盾不上交"。</p>
-              <p style="margin:0 0 10px;line-height:1.9">枫桥镇还创新推出"枫桥义警""红枫大妈"等群众自治品牌，组建了63支平安志愿者队伍，参与人数达3200余人。同时，该镇开发了"智慧枫桥"数字平台，实现矛盾纠纷在线申报、在线调解、在线回访，群众足不出户即可解决纠纷，在线调解占比已超过40%。</p>
-              <p style="margin:0"><strong>❓ 问题：</strong>根据材料，概括枫桥镇矛盾纠纷调解的主要做法。（150字以内）</p>
-            </div>
-            <p style="margin:4px 0 0;font-size:12px;">你的答案：<textarea style="width:100%;height:60px;padding:6px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;resize:vertical;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'" placeholder="在这里写下你的答案..."></textarea></p>
-
-            <p style="margin-top:16px;border-top:1px solid #e8f4f8;padding-top:14px"><strong>📝 浙江省情专项练习 — 常识判断 10 题</strong></p>
-            <p style="color:#7b8da0;font-size:12px">以下题目模拟真实考试中常识判断模块的浙江省情考题</p>
-
-            <p style="margin-top:14px"><strong>1.</strong> 浙江"八八战略"是习近平同志在浙江工作期间提出的重大决策部署。下列不属于"八八战略"中"八大优势"的是：<br>
-            A. 体制机制优势　B. 区位优势　C. 矿产资源优势　D. 城乡协调发展优势</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>2.</strong> 2021年，中央赋予浙江高质量发展建设共同富裕示范区的重大使命。示范区建设的核心是缩小三方面差距，即：<br>
-            A. 地区差距、城乡差距、行业差距<br>
-            B. 地区差距、城乡差距、收入差距<br>
-            C. 南北差距、城乡差距、收入差距<br>
-            D. 地区差距、产业差距、收入差距</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>3.</strong> 浙江11个地级市中，面积最大和人口最多的城市分别是：<br>
-            A. 杭州、宁波　B. 丽水、杭州　C. 温州、杭州　D. 丽水、温州</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>4.</strong> 浙江"千万工程"于2003年启动，2023年升级为新三年行动。升级后的主题是：<br>
-            A. 千村示范、万村整治<br>
-            B. 千村引领、万村共富<br>
-            C. 千村美丽、万村振兴<br>
-            D. 千村小康、万村现代化</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>5.</strong> 位于浙江的良渚古城遗址于哪一年被列入世界文化遗产名录？<br>
-            A. 2011年　B. 2014年　C. 2019年　D. 2021年</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>6.</strong> 浙江地形素有"七山一水二分田"之说。其中"二分田"指的是：<br>
-            A. 耕地面积占比约20%　B. 平原面积占比约20%<br>
-            C. 可开发土地占比约20%　D. 城市建设用地占比约20%</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>7.</strong> 浙江"三个一号工程"中，"地瓜经济"提能升级属于：<br>
-            A. 一号发展工程　B. 一号改革工程　C. 一号开放工程　D. 一号创新工程</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>8.</strong> 下列关于杭州亚运会（2023年举办）的表述，正确的是：<br>
-            A. 杭州是继北京、广州、上海后第四个举办亚运会的中国城市<br>
-            B. 吉祥物为"琮琮、莲莲、宸宸"<br>
-            C. 主题口号为"同一个世界，同一个梦想"<br>
-            D. 举办时间为2022年，后因疫情推迟至2023年</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>9.</strong> 浙江的"枫桥经验"诞生于哪个地级市？<br>
-            A. 杭州　B. 宁波　C. 绍兴　D. 金华</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <p><strong>10.</strong> 浙江数字经济核心产业增加值占GDP的比重约为：<br>
-            A. 18%以上　B. 22%以上　C. 28%以上　D. 35%以上</p>
-            <p style="margin:4px 0 8px;font-size:12px;">你的答案：<input type="text" class="ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;font-size:13px;text-align:center;" onfocus="this.style.borderColor='#14a3a8'" onblur="this.style.borderColor='#d0d8e0'"></p>
-
-            <blockquote>做完点击下方按钮查看答案，自行核对。</blockquote>
-            <div style="text-align:center;margin:10px 0">
-              <button onclick="toggleAnswers('zj-answers')" style="background:#0d7377;color:#fff;border:none;padding:8px 24px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600;">👁️ 显示/隐藏答案</button>
-            </div>
-            <div id="zj-answers" style="display:none">
-              <div style="background:#f0faf9;border-radius:8px;padding:14px;line-height:2">
-                <p><strong>1. C</strong> — 浙江"八八战略"八大优势不包括"矿产资源优势"，浙江是资源小省。</p>
-                <p><strong>2. B</strong> — 共同富裕示范区核心：缩小地区差距、城乡差距、收入差距。</p>
-                <p><strong>3. B</strong> — 丽水面积最大（1.7万km²），杭州人口最多（约1200万）。</p>
-                <p><strong>4. B</strong> — 2023年升级为"千村引领、万村共富"。</p>
-                <p><strong>5. C</strong> — 良渚古城遗址2019年列入世界文化遗产。</p>
-                <p><strong>6. B</strong> — "七山一水二分田"：山地70%、水域10%、平原20%。</p>
-                <p><strong>7. C</strong> — "地瓜经济"提能升级属于一号开放工程。</p>
-                <p><strong>8. B</strong> — 吉祥物琮琮、莲莲、宸宸。A错（第三个是杭州不是上海），C错（口号是"心心相融，@未来"），D也正确但B是最完整的。答案选B。</p>
-                <p><strong>9. C</strong> — 枫桥经验诞生于绍兴诸暨市枫桥镇。</p>
-                <p><strong>10. C</strong> — 浙江数字经济核心产业增加值占GDP比重超28%。</p>
-              </div>
-            </div>
-          </div>
+    <div class="materials-main" id="materials-main">
+      <div id="md0730" class="day-section" style="display:none">
+        <h3>7月30日 周四 <span class="badge">基础夯实</span></h3>
+        <div class="block"><h4>🌅 晨读播报</h4><div class="content">
+<p><strong>📰 时政速览</strong></p>
+<p><strong>【全国】二十届三中全会改革落地</strong> — 财税改革+新型城镇化，杭州落户政策有望进一步放宽</p>
+<p><strong>【全国】上半年经济数据</strong> — GDP同比增5.2%，数字经济核心产业增12.8%</p>
+<p><strong>【浙江】杭州"城市大脑2.0"</strong> — 覆盖交通/医疗/政务，浙里办用户突破1.2亿</p>
+<p><strong>【浙江】"千万工程"新三年行动</strong> — 升级为"千村引领、万村共富"，2026年建成1000个未来乡村</p>
+<p><strong>【浙江】枫桥经验60周年</strong> — "小事不出村，大事不出镇，矛盾不上交"</p>
+<p style="margin-top:8px"><strong>📝 成语积累：</strong>因势利导、标本兼治</p>
+<p><strong>💡 常识速记：</strong>浙江11市+四大都市区、数字经济三个第一</p>
+</div></div>
+        <div class="block"><h4>🍜 午休刷题 — 判断推理 15题</h4><div class="content">
+<p><strong>一、图形推理（4题）</strong></p>
+<p><strong>1.</strong> 从所给四个选项中，选择最合适的一个填入问号处：○ □ △ ○ □ ？ → A.△ B.○ C.□ D.◇</p>
+<p><strong>2.</strong> 下列图形中，与众不同的是：A.田 B.申 C.由 D.甲</p>
+<p><strong>3.</strong> 数列：2, 4, 8, 14, 22, ？ → A.28 B.30 C.32 D.34</p>
+<p><strong>4.</strong> 纸盒展开图折叠问题（正方体六面展开图，判断相邻/相对关系）</p>
+<p><strong>二、定义判断（3题）</strong></p>
+<p><strong>5.</strong> "搭便车效应"：A.小区业主拒出资却用电梯 B.员工加班获奖金 C.村民集体修路 D.学生竞赛获奖</p>
+<p><strong>6.</strong> "逆向选择"：A.二手车市场好车难卖 B.超市打折 C.简历造假 D.餐馆特价菜</p>
+<p><strong>7.</strong> "峰终定律"：A.医院就诊后送礼品 B.平均绩效年终奖 C.餐厅高潮上菜+离店送冰淇淋 D.银行季度满意度</p>
+<p><strong>三、类比推理（3题）</strong></p>
+<p><strong>8.</strong> 医生：医院 :: 教师：？ → A.学校 B.学生 C.课本 D.教育</p>
+<p><strong>9.</strong> 浙江：杭州 :: 江苏：？ → A.苏州 B.南京 C.无锡 D.上海</p>
+<p><strong>10.</strong> 繁华：荒凉 :: 热烈：？ → A.热情 B.冷漠 C.温暖 D.激动</p>
+<p><strong>四、逻辑判断（5题）</strong></p>
+<p><strong>11.</strong> 有人喜欢篮球，有人喜欢足球。哪项一定为真？→ A.有人不喜欢篮球 B.有人既喜欢篮球又喜欢足球 C.有人至少喜欢其中一种 D.不能确定</p>
+<p><strong>12.</strong> 所有考生都考职测，有些考生也考综应。可以推出？→ A.所有考职测的都考综应 B.有些考职测的也考综应 C.不考综应的一定不考职测 D.考职测的不一定考综应</p>
+<p><strong>13.</strong> 限行后拥堵指数下降15%。最能削弱"限行有效"的是？→ A.同期新增3条地铁 B.很多市民买第二辆车 C.限行前拥堵指数已在下降 D.市民支持限行</p>
+<p><strong>14.</strong> 甲、乙、丙三人只有一人会游泳。甲说"我会"，乙说"我不会"，丙说"甲不会"。只有一人说真话。→ A.甲 B.乙 C.丙 D.无法确定</p>
+<p><strong>15.</strong> "杭州数字经济核心产业增加值占GDP超28%。"最能支持？→ A.杭州是全国数字经济最发达城市 B.数字经济是杭州重要引擎 C.杭州GDP总量全国第一 D.杭州其他产业正在萎缩</p>
+<details style="margin-top:10px"><summary style="cursor:pointer;color:#14a3a8;font-weight:600">📋 查看答案</summary>
+<div style="background:#f0faf9;border-radius:6px;padding:10px;margin-top:6px;font-size:13px;line-height:2">
+<p>1.B ○ | 2.A 田（其他都是轴对称+中心对称） | 3.C 32（差值为2,4,6,8,10） | 4.C 前和左相邻</p>
+<p>5.A | 6.A（二手车市场的信息不对称） | 7.C（峰值+终点双重满足）</p>
+<p>8.A | 9.B（省:省会，南京是江苏省会） | 10.B（反义关系）</p>
+<p>11.D（特称命题推不出必然结论） | 12.B（三段论：all+some→some） | 13.C（削弱因果关系） | 14.B（乙会游泳，甲丙说谎） | 15.B（数据支持"重要引擎"）</p>
+</div></details>
+</div></div>
+        <div class="block"><h4>🌙 晚间学习 — 综应·归纳概括</h4><div class="content">
+<p><strong>一、答题三步法：</strong>审题(1min) → 读材料圈画关键词(3min) → 归纳合并同类项(3min) → 分条书写"总括句+具体内容"(5min)</p>
+<p style="margin-top:8px"><strong>二、真题演练：</strong>杭州"城市大脑"建设主要做法（200字）</p>
+<p style="font-size:12px;color:#7b8da0">材料：城市大脑覆盖48个场景、AI调控2300个路口、先看病后付费惠及8000万人次、浙里办3600项服务、全国首部城市大脑法规、推广至200余城市</p>
+<details style="margin-top:4px"><summary style="cursor:pointer;color:#14a3a8;font-weight:600">📋 参考答案</summary>
+<div style="background:#f0faf9;border-radius:6px;padding:10px;margin-top:6px;font-size:13px;line-height:1.8">1.拓展应用场景，覆盖交通/医疗/政务等48个领域；2.智慧交通治理，AI调控2300个路口，通行效率提升15%；3.优化医疗服务，首创"先看病后付费"，惠及8000万人次；4.深化政务改革，整合3600项服务，352项"智能秒办"；5.强化制度保障，出台全国首部城市大脑法规；6.推动模式推广，输出至200余城市，入选联合国最佳实践。（199字）</div></details>
+<p style="margin-top:8px"><strong>三、常见错误：</strong>照抄原文 | 遗漏要点 | 超字数 | 无总括句</p>
+<p style="margin-top:8px"><strong>四、课后作业：</strong>概括枫桥镇矛盾纠纷调解主要做法（150字）</p>
+<p style="font-size:12px;color:#7b8da0">材料：枫桥镇"一中心四平台"、专职调解员28人+兼职156人、成功率98.7%、85%在村级化解、"枫桥义警""红枫大妈"、智慧枫桥在线调解超40%</p>
+<details style="margin-top:4px"><summary style="cursor:pointer;color:#14a3a8;font-weight:600">📋 参考答案</summary>
+<div style="background:#f0faf9;border-radius:6px;padding:10px;margin-top:6px;font-size:13px;line-height:1.8">1.建立"一中心四平台"多元化解体系，整合12个部门力量；2.组建专兼职调解队伍，专职28人+兼职156人，覆盖29个村3个社区；3.创新群众自治品牌，"枫桥义警""红枫大妈"等63支队伍3200余人；4.开发"智慧枫桥"数字平台，在线调解占比超40%，实现"小事不出村、大事不出镇"。（148字）</div></details>
+<p style="margin-top:12px"><strong>📝 浙江省情专项练习 10题</strong></p>
+<p style="font-size:12px;color:#7b8da0">八八战略、共同富裕示范区、11市面积人口、千万工程升级、良渚古城申遗、七山一水二分田、三个一号工程、杭州亚运会、枫桥经验诞生地、数字经济占比</p>
+<details style="margin-top:4px"><summary style="cursor:pointer;color:#14a3a8;font-weight:600">📋 查看答案</summary>
+<div style="background:#f0faf9;border-radius:6px;padding:10px;margin-top:6px;font-size:13px;line-height:2">
+<p>1.C（浙江无矿产资源优势） | 2.B（地区/城乡/收入差距） | 3.B（丽水面积最大，杭州人口最多） | 4.B（千村引领、万村共富） | 5.C（2019年） | 6.B（平原约20%） | 7.C（一号开放工程） | 8.B（吉祥物琮琮/莲莲/宸宸） | 9.C（绍兴诸暨） | 10.C（超28%）</p>
+</div></details>
+</div></div>
+        <div style="text-align:right;margin-top:12px">
+          <button onclick="printTab('materials')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:6px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
         </div>
       </div>
+      <div id="md0731" class="day-section" style="display:none">
+        <h3>7月31日 周五 <span class="badge">基础夯实</span></h3>
+        <div class="block"><h4>🌅 晨读 · 时政速览</h4><div class="content">
+<p><strong>【全国】三中全会改革配套政策密集落地</strong></p>
+<p>7月15-18日三中全会后，首批改革配套文件本周集中发布：<br>
+· <strong>消费税改革</strong>：征收环节后移方案征求意见，浙江作为数字经济大省，平台经济税收格局将受影响<br>
+· <strong>新型城镇化</strong>：超大城市落户政策进一步放宽，杭州直接受益</p>
+<blockquote>综应应用：大作文"改革"话题——"改革永远在路上，每一步都是对人民期盼的回应"</blockquote>
+<p><strong>【浙江】浙江数字经济增加值占GDP比重突破29%</strong></p>
+<p>2026年上半年数据：数字经济核心产业增加值同比增长11.2%，占GDP比重达29.3%，继续保持全国第一。杭州、宁波、嘉兴三地数字经济增速领跑全省。人工智能、云计算、大数据三大赛道增速超20%。</p>
+<blockquote>综应应用：对策建议/大作文的万能数据——"数字经济占GDP近三成"是浙江最亮眼的经济标签</blockquote>
+<p><strong>【浙江】杭州未来社区建设三年行动启动</strong></p>
+<p>杭州发布《未来社区建设三年行动计划（2026-2028）》，全市计划建成200个未来社区，覆盖"一老一小"服务、智慧停车、社区微公交等场景。2026年重点推进老旧小区数字化改造，首批50个社区年底前完成。</p>
+<blockquote>综应应用：公文写作/大作文——"未来社区"是浙江数字化改革在基层治理的具体落地</blockquote>
+</div></div>
+        <div class="block"><h4>💡 常识速记 · 浙江省情 — 人物篇</h4><div class="content">
+<table>
+<tr><th>人物</th><th>时期</th><th>身份</th><th>常考要点</th></tr>
+<tr><td>王阳明</td><td>明代</td><td>思想家、军事家</td><td>浙江余姚人，心学集大成者，"知行合一"</td></tr>
+<tr><td>鲁迅</td><td>近现代</td><td>文学家、思想家</td><td>浙江绍兴人，《狂人日记》中国第一部白话小说</td></tr>
+<tr><td>蔡元培</td><td>近现代</td><td>教育家</td><td>浙江绍兴人，北大校长，"思想自由、兼容并包"</td></tr>
+<tr><td>钱学森</td><td>现代</td><td>科学家</td><td>浙江杭州人，"中国航天之父""两弹一星"元勋</td></tr>
+<tr><td>竺可桢</td><td>现代</td><td>气象学家</td><td>浙江绍兴人，浙大校长，中国近代气象学奠基人</td></tr>
+</table>
+<p style="margin-top:8px"><strong>文化名人速记：</strong>文学（鲁迅/茅盾/郁达夫/徐志摩）| 书画（王羲之/赵孟頫/吴昌硕）| 科技（钱学森/钱三强/屠呦呦）</p>
+<p style="font-size:12px;color:#7b8da0">速记口诀：绍兴出文豪，杭州出科学家，余姚出圣人</p>
+</div></div>
+        <div class="block"><h4>📝 成语积累</h4><div class="content">
+<p><strong>1. 因势利导</strong> — 顺着事物发展趋势加以引导。→ 杭州因势利导发展数字经济，成为全国标杆。</p>
+<p><strong>2. 标本兼治</strong> — 既要解决表面问题，又要根治深层原因。→ 城市交通拥堵需要标本兼治。</p>
+<p><strong>3. 行稳致远</strong> — 稳步前进才能到达远方。→ 共同富裕不是一蹴而就，需要行稳致远、久久为功。</p>
+</div></div>
+        <div class="block"><h4>📌 范文背诵段</h4><div class="content">
+<blockquote><p><strong>以产业升级夯实共富之基</strong></p>
+<p>共同富裕，首先是富裕。没有强大的经济基础，共同富裕就是无源之水。浙江数字经济核心产业增加值占GDP比重超29%，全国第一；人均GDP连续多年居全国省区首位。要持续做大"蛋糕"，就要深入实施数字经济创新提质"一号发展工程"，以数字经济引领现代化产业体系建设，让更多群众在产业升级中实现就业增收。</p></blockquote>
+<p style="font-size:12px;color:#7b8da0">选自《以共同富裕书写浙江现代化新篇章》· 今日背诵：分论点一</p>
+</div></div>
+        <div class="block"><h4>🍜 午休刷题 — 五大题型轮换 30题</h4><div class="content">
+<div id="quiz-0731">
+<script class="answer-bank" type="application/json">{"answers":["B","C","D","C","C","B","C","C","D","A","A","D","A","A","A","B","B","C","A","A","B","C","A","C","B","B","C","A","D","C"]}</script>
+<p style="color:#7b8da0;font-size:12px;margin-bottom:12px">📋 今日主题：资料分析（8题）+ 判断推理（6题）+ 言语理解（6题）+ 数量关系（5题）+ 常识判断（5题）</p>
 
-      <div id="d0731" class="day-section" style="display:none">
-        <h3>7月31日 周四 <span class="badge">基础夯实</span></h3>
-        <div class="empty-day"><div class="emoji">📝</div><p>今晚学习结束后自动生成</p></div>
+<p><strong>一、资料分析（8题）</strong></p>
+<p style="font-size:12px;color:#7b8da0">材料：2026年上半年，浙江省数字经济核心产业增加值达1.82万亿元，同比增长11.2%，占GDP比重29.3%。其中，杭州数字经济核心产业增加值6720亿元（+13.1%），宁波2180亿元（+9.8%），嘉兴1050亿元（+12.5%）。全省人工智能产业规模达3800亿元（+22.6%），云计算大数据产业规模达5200亿元（+18.3%）。</p>
+
+<div class="q-block" data-qid="Q1" data-module="资料分析"><p class="q-text"><strong>1.</strong> 2026年上半年浙江数字经济核心产业增加值占GDP比重约为？</p>
+<div class="options"><span>A. 22.5%</span><span>B. 29.3%</span><span>C. 28.0%</span><span>D. 35.1%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 直接读数题，材料第一句明确给出29.3%。</p></div></div>
+
+<div class="q-block" data-qid="Q2" data-module="资料分析"><p class="q-text"><strong>2.</strong> 杭州数字经济核心产业增加值占全省的约？</p>
+<div class="options"><span>A. 32.5%</span><span>B. 35.1%</span><span>C. 36.9%</span><span>D. 40.2%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 6720÷18200≈36.9%。杭州一家占全省数字经济近四成。</p></div></div>
+
+<div class="q-block" data-qid="Q3" data-module="资料分析"><p class="q-text"><strong>3.</strong> 2026年上半年浙江人工智能产业规模同比增速约为？</p>
+<div class="options"><span>A. 18.3%</span><span>B. 11.2%</span><span>C. 13.1%</span><span>D. 22.6%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 直接读数：人工智能+22.6%，云计算大数据+18.3%。</p></div></div>
+
+<div class="q-block" data-qid="Q4" data-module="资料分析"><p class="q-text"><strong>4.</strong> 杭州、宁波、嘉兴三地数字经济增加值合计占全省的约？</p>
+<div class="options"><span>A. 48%</span><span>B. 52%</span><span>C. 55%</span><span>D. 58%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — (6720+2180+1050)÷18200 = 9950÷18200≈54.7%，最接近55%。</p></div></div>
+
+<div class="q-block" data-qid="Q5" data-module="资料分析"><p class="q-text"><strong>5.</strong> 若保持11.2%增速，2027年上半年浙江数字经济核心产业增加值预计约为？</p>
+<div class="options"><span>A. 1.92万亿</span><span>B. 1.98万亿</span><span>C. 2.02万亿</span><span>D. 2.08万亿</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 1.82×(1+11.2%) = 1.82×1.112≈2.02万亿。</p></div></div>
+
+<div class="q-block" data-qid="Q6" data-module="资料分析"><p class="q-text"><strong>6.</strong> 2026年上半年杭州数字经济增速比全省平均水平高多少个百分点？</p>
+<div class="options"><span>A. 0.9</span><span>B. 1.9</span><span>C. 2.5</span><span>D. 3.1</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 杭州13.1% - 全省11.2% = 1.9个百分点。</p></div></div>
+
+<div class="q-block" data-qid="Q7" data-module="资料分析"><p class="q-text"><strong>7.</strong> 宁波数字经济增加值约占杭州的？</p>
+<div class="options"><span>A. 28.5%</span><span>B. 30.2%</span><span>C. 32.4%</span><span>D. 35.6%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 2180÷6720≈32.4%。</p></div></div>
+
+<div class="q-block" data-qid="Q8" data-module="资料分析"><p class="q-text"><strong>8.</strong> 根据材料，可以推出的是？</p>
+<div class="options"><span>A. 杭州数字经济增速全省第一</span><span>B. 嘉兴数字经济规模超过宁波</span><span>C. 人工智能增速快于云计算大数据</span><span>D. 三市合计占全省数字经济超六成</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 人工智能22.6% > 云计算大数据18.3%。A材料未比较全省其他城市，B嘉兴1050<宁波2180，D三市合计约55%未超60%。</p></div></div>
+
+<p style="margin-top:18px"><strong>二、判断推理（6题）</strong></p>
+
+<div class="q-block" data-qid="Q9" data-module="判断推理"><p class="q-text"><strong>9.</strong> 数列：1, 3, 7, 13, 21, ？</p>
+<div class="options"><span>A. 28</span><span>B. 29</span><span>C. 30</span><span>D. 31</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 二级等差：差值2,4,6,8,10→下一项21+10=31。</p></div></div>
+
+<div class="q-block" data-qid="Q10" data-module="判断推理"><p class="q-text"><strong>10.</strong> "口红效应"：经济不景气时，口红等廉价奢侈品销量上升。属于该效应的是？</p>
+<div class="options"><span>A. 经济危机时电影院票房大增</span><span>B. 房价下跌时豪宅销量上升</span><span>C. 股市大涨时基金申购火爆</span><span>D. 疫情期间LV包销量创新高</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 口红效应核心：经济不景气→廉价替代品消费上升。电影票是相对廉价的娱乐替代。</p></div></div>
+
+<div class="q-block" data-qid="Q11" data-module="判断推理"><p class="q-text"><strong>11.</strong> 医生：手术刀 :: 教师：？</p>
+<div class="options"><span>A. 粉笔</span><span>B. 教案</span><span>C. 学生</span><span>D. 教室</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 职业:工具关系。手术刀是医生的工具，粉笔是教师的工具。教案是备课材料不是直接工具。</p></div></div>
+
+<div class="q-block" data-qid="Q12" data-module="判断推理"><p class="q-text"><strong>12.</strong> 所有A是B，有些B是C。可以推出？</p>
+<div class="options"><span>A. 所有A是C</span><span>B. 有些A是C</span><span>C. 有些A不是C</span><span>D. 不能确定A与C的关系</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — all(A→B)+some(B→C)推不出A与C的关系。A可能全部在B的非C部分。</p></div></div>
+
+<div class="q-block" data-qid="Q13" data-module="判断推理"><p class="q-text"><strong>13.</strong> 只有周五才开会。今天开会了，所以？</p>
+<div class="options"><span>A. 今天是周五</span><span>B. 今天不是周五</span><span>C. 今天可能是周五</span><span>D. 无法判断</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — "只有周五才开会"=开会→周五。已知开会，肯前必肯后，推出今天是周五。</p></div></div>
+
+<div class="q-block" data-qid="Q14" data-module="判断推理"><p class="q-text"><strong>14.</strong> 某公司员工必须参加培训。小张是该公司员工，所以？</p>
+<div class="options"><span>A. 小张必须参加培训</span><span>B. 小张可能不需要培训</span><span>C. 小张已经参加过培训</span><span>D. 小张不是正式员工</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 三段论：所有员工→参加培训，小张是员工→小张必须参加培训。</p></div></div>
+
+<p style="margin-top:18px"><strong>三、言语理解（6题）</strong></p>
+
+<div class="q-block" data-qid="Q15" data-module="言语理解"><p class="q-text"><strong>15.</strong> 填入划横线处最恰当的一项是：杭州数字经济之所以能领跑全国，_____于二十年如一日的战略定力。</p>
+<div class="options"><span>A. 得益</span><span>B. 归功</span><span>C. 取决</span><span>D. 来源</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — "得益于"是固定搭配。"归功于"也可，但"归功"强调功劳归属，语境不如"得益"贴切。</p></div></div>
+
+<div class="q-block" data-qid="Q16" data-module="言语理解"><p class="q-text"><strong>16.</strong> 下列句子中，没有语病的是？</p>
+<div class="options"><span>A. 通过这次学习，使我提高了认识</span><span>B. 杭州的城市治理水平在全国处于领先地位</span><span>C. 他的写作能力有了明显的提高和进步</span><span>D. 为了防止不再发生事故，公司加强了管理</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — A缺主语（"通过...使"），C"提高和进步"语义重复，D"防止不再"双重否定错误。</p></div></div>
+
+<div class="q-block" data-qid="Q17" data-module="言语理解"><p class="q-text"><strong>17.</strong> 浙江以数字化改革为牵引，推动政府治理、经济发展、社会服务全面转型。从"最多跑一次"到"一次都不跑"，从城市大脑到未来社区，数字技术正在重塑浙江的公共服务供给模式，让优质资源突破时空限制，惠及更多群众。这段文字主要说明：</p>
+<div class="options"><span>A. 数字技术改变了人们的生活方式</span><span>B. 浙江数字化改革走在全国前列</span><span>C. 杭州城市大脑是数字治理的典范</span><span>D. 数字化是未来发展的必然趋势</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 主旨概括题，选项B最全面。A太宽泛，C太具体只提到杭州，D是推断不是主旨。</p></div></div>
+
+<div class="q-block" data-qid="Q18" data-module="言语理解"><p class="q-text"><strong>18.</strong> 与"未雨绸缪"意思最接近的是？</p>
+<div class="options"><span>A. 亡羊补牢</span><span>B. 临渴掘井</span><span>C. 防患未然</span><span>D. 亡羊补牢</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 未雨绸缪=事先准备，防患未然=在祸患发生前预防。A/D是事后补救，B是临时应付。</p></div></div>
+
+<div class="q-block" data-qid="Q19" data-module="言语理解"><p class="q-text"><strong>19.</strong> 依次填入：共同富裕不是_____，而是一场需要_____的持久战。</p>
+<div class="options"><span>A. 一蹴而就 久久为功</span><span>B. 一劳永逸 急功近利</span><span>C. 一帆风顺 一鼓作气</span><span>D. 一日千里 锲而不舍</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — "不是...而是"转折关系。"一蹴而就"（一下子成功）与"久久为功"（长期坚持）形成最佳对比。</p></div></div>
+
+<div class="q-block" data-qid="Q20" data-module="言语理解"><p class="q-text"><strong>20.</strong> 下列各句中，加点成语使用恰当的是？</p>
+<div class="options"><span>A. 他对这个问题的分析入木三分，令人佩服</span><span>B. 这位演员的表演差强人意，观众纷纷退场</span><span>C. 他首当其冲地完成了任务，获得了表彰</span><span>D. 社区环境美轮美奂，居民幸福感大幅提升</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — A"入木三分"（分析深刻）使用正确。B"差强人意"=大体上还能使人满意，不是"差劲"的意思。C"首当其冲"=最先受到攻击/灾难，不是"首先"的意思。D"美轮美奂"只能形容房屋建筑。</p></div></div>
+
+<p style="margin-top:18px"><strong>四、数量关系（5题）</strong></p>
+
+<div class="q-block" data-qid="Q21" data-module="数量关系"><p class="q-text"><strong>21.</strong> 数列：2, 6, 12, 20, 30, ？</p>
+<div class="options"><span>A. 38</span><span>B. 42</span><span>C. 40</span><span>D. 44</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 1×2, 2×3, 3×4, 4×5, 5×6, 6×7=42。或二级等差：4,6,8,10,12→30+12=42。</p></div></div>
+
+<div class="q-block" data-qid="Q22" data-module="数量关系"><p class="q-text"><strong>22.</strong> 一项工程，甲单独做需要12天，乙单独做需要18天。两人合作需要多少天？</p>
+<div class="options"><span>A. 6.8天</span><span>B. 7天</span><span>C. 7.2天</span><span>D. 8天</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 甲效率1/12，乙效率1/18，合作效率=1/12+1/18=5/36，天数=36/5=7.2天。</p></div></div>
+
+<div class="q-block" data-qid="Q23" data-module="数量关系"><p class="q-text"><strong>23.</strong> 某班男生人数是女生的3/5，全班共48人，男生有多少人？</p>
+<div class="options"><span>A. 18</span><span>B. 20</span><span>C. 16</span><span>D. 22</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 男:女=3:5，总份数=8，男=48×3/8=18人。</p></div></div>
+
+<div class="q-block" data-qid="Q24" data-module="数量关系"><p class="q-text"><strong>24.</strong> 一个长方形的长增加20%，宽减少20%，面积如何变化？</p>
+<div class="options"><span>A. 不变</span><span>B. 增加4%</span><span>C. 减少4%</span><span>D. 减少2%</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 新面积=1.2a×0.8b=0.96ab，减少4%。</p></div></div>
+
+<div class="q-block" data-qid="Q25" data-module="数量关系"><p class="q-text"><strong>25.</strong> 甲、乙两人同时从A、B两地相向而行，甲速度6km/h，乙速度4km/h，相遇时甲比乙多走4km。A、B两地相距？</p>
+<div class="options"><span>A. 18km</span><span>B. 20km</span><span>C. 22km</span><span>D. 24km</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 速度差2km/h，多走4km→时间2h。总距离=(6+4)×2=20km。</p></div></div>
+
+<p style="margin-top:18px"><strong>五、常识判断（5题）</strong></p>
+
+<div class="q-block" data-qid="Q26" data-module="常识判断"><p class="q-text"><strong>26.</strong> 浙江"八八战略"提出的时间是？</p>
+<div class="options"><span>A. 2002年</span><span>B. 2003年</span><span>C. 2004年</span><span>D. 2005年</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 2003年7月，习近平同志在浙江省委十一届四次全会上提出"八八战略"。</p></div></div>
+
+<div class="q-block" data-qid="Q27" data-module="常识判断"><p class="q-text"><strong>27.</strong> 2023年杭州亚运会的主题口号是？</p>
+<div class="options"><span>A. 同一个世界，同一个梦想</span><span>B. 心心相融，@未来</span><span>C. 一起向未来</span><span>D. 激情盛会，和谐亚洲</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — A是北京奥运，C是北京冬奥，D是广州亚运。</p></div></div>
+
+<div class="q-block" data-qid="Q28" data-module="常识判断"><p class="q-text"><strong>28.</strong> 浙江"三个一号工程"中，"一号发展工程"指的是？</p>
+<div class="options"><span>A. 地瓜经济提能升级</span><span>B. 营商环境优化提升</span><span>C. 数字经济创新提质</span><span>D. 共同富裕示范区建设</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 发展=数字经济，改革=营商环境，开放=地瓜经济。</p></div></div>
+
+<div class="q-block" data-qid="Q29" data-module="常识判断"><p class="q-text"><strong>29.</strong> "两山理论"的发源地是浙江哪个村？</p>
+<div class="options"><span>A. 安吉余村</span><span>B. 诸暨枫桥村</span><span>C. 桐乡乌镇</span><span>D. 淳安下姜村</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 2005年习近平在安吉余村提出"绿水青山就是金山银山"。</p></div></div>
+
+<div class="q-block" data-qid="Q30" data-module="常识判断"><p class="q-text"><strong>30.</strong> 下列不属于浙江世界文化遗产的是？</p>
+<div class="options"><span>A. 杭州西湖</span><span>B. 良渚古城遗址</span><span>C. 京杭大运河（浙江段）</span><span>D. 乌镇</span></div>
+<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 乌镇虽然知名度高但不是世界文化遗产。浙江三大世界遗产：西湖（2011）、大运河（2014）、良渚（2019）。</p></div></div>
+
+</div>
+<div style="text-align:center;margin-top:16px">
+  <button onclick="gradeQuiz('quiz-0731')" style="background:#0d7377;color:#fff;border:none;padding:10px 32px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:700">✅ 对答案</button>
+  <button onclick="saveQuizAnswers('quiz-0731');alert('✅ 已保存！')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:10px 24px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;margin-left:8px">💾 保存</button>
+  <div id="quiz-0731-result" style="display:none"></div>
+</div>
+</div></div>
+        <div class="block"><h4>🌙 晚间学习</h4><div class="content"><p style="color:#7b8da0">输入「晚」生成今日晚间学习</p></div></div>
+        <div style="text-align:right;margin-top:12px">
+          <button onclick="printTab('materials')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:6px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+        </div>
       </div>
-      <div id="d0801" class="day-section" style="display:none">
-        <h3>8月1日 周五 <span class="badge">基础夯实</span></h3>
-        <div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div>
-      </div>
-      <div id="d0802" class="day-section" style="display:none">
-        <h3>8月2日 周六 <span class="badge">基础夯实</span></h3>
-        <div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div>
-      </div>
-      <div id="d0803" class="day-section" style="display:none">
-        <h3>8月3日 周日 <span class="badge">半天学习</span></h3>
-        <div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div>
-      </div>
+      <div id="md0801" class="day-section" style="display:none"><h3>8月1日 周六 <span class="badge">基础夯实</span></h3>
+<div class="block"><h4>🌅 晨读 · 时政速览</h4><div class="content">
+<p><strong>📰【全国】三中全会改革"施工图"加速落地</strong></p>
+<p>7月15-18日三中全会后，8月进入改革举措密集落地期：<br>
+· <strong>财税改革</strong>：消费税征收环节后移方案进入征求意见阶段，数字平台经济税收规则同步完善<br>
+· <strong>新型城镇化</strong>：城区常住人口300万以下城市全面取消落户限制，杭州等超大城市推进积分落户优化<br>
+· <strong>科技体制改革</strong>：新型举国体制下，之江实验室等新型研发机构获更大自主权</p>
+<blockquote>综应应用：大作文"改革"话题——"改革不是冰冷的文件，而是千家万户的切身感受"</blockquote>
+
+<p><strong>📰【全国】2026年上半年经济"成绩单"</strong></p>
+<p>GDP同比增长5.2%，其中：数字经济核心产业增长12.8%、新能源汽车产量增长35%、高技术制造业投资增长18.5%。消费复苏势头明显，社零总额增长8.3%。</p>
+<blockquote>综应应用：对策建议/大作文万能数据——"数字经济+12.8%"是浙江最亮眼的经济底色</blockquote>
+
+<p><strong>📰【浙江】数字经济"一号工程"再升级</strong></p>
+<p>2026年上半年浙江数字经济核心产业增加值占GDP比重突破29.3%，继续保持全国第一。杭州（6720亿，+13.1%）、宁波（2180亿，+9.8%）、嘉兴（1050亿，+12.5%）三地领跑。人工智能产业规模达3800亿（+22.6%），云计算大数据达5200亿（+18.3%）。</p>
+<blockquote>综应应用：策论文必用数据——"浙江数字经济占GDP近三成，每三个浙江人中就有一个享受数字红利"</blockquote>
+
+<p><strong>📰【浙江】亚运遗产"活起来"——杭州后亚运时代</strong></p>
+<p>杭州亚运场馆赛后利用率超85%，亚运村转型为未来社区样板，钱塘江"大小莲花"全年赛事演出不断。亚运IP持续释放"赛事经济"红利，2026年上半年杭州体育产业增加值增长15.8%。</p>
+<blockquote>综应应用：大作文"可持续发展"——"亚运遗产不是终点，而是杭州城市能级跃升的新起点"</blockquote>
+
+<p><strong>📰【浙江】浙江应对高温天气——"清凉驿站"全覆盖</strong></p>
+<p>全省11市设立"清凉驿站"超1.2万个，为环卫工人、外卖骑手等户外工作者提供免费饮水、休息和防暑药品。杭州"爱心冰箱"数量翻倍，宁波推出"环卫工人作息时间弹性调整"政策。</p>
+<blockquote>综应应用：公文写作"民生保障"——"一座城市的温度，体现在对每一个普通劳动者的关怀"</blockquote>
+
+<p style="margin-top:8px"><strong>📝 今日金句积累：</strong>改革不停顿、开放不止步 / 民之所望，政之所向 / 城市让生活更美好</p>
+</div></div>
+
+<div class="block"><h4>💡 常识速记 · 浙江世界遗产与非遗</h4><div class="content">
+<table>
+<tr><th>遗产名称</th><th>类型</th><th>入选年份</th><th>常考要点</th></tr>
+<tr><td>西湖文化景观</td><td>世界文化遗产</td><td>2011</td><td>中国唯一一个湖泊类世界文化遗产，"西湖十景"</td></tr>
+<tr><td>京杭大运河（浙江段）</td><td>世界文化遗产</td><td>2014</td><td>流经杭州、嘉兴、湖州三市，拱宸桥是终点标志</td></tr>
+<tr><td>良渚古城遗址</td><td>世界文化遗产</td><td>2019</td><td>实证中华五千年文明史，位于杭州余杭</td></tr>
+<tr><td>江郎山</td><td>世界自然遗产</td><td>2010</td><td>位于衢州江山，中国丹霞地貌组成部分</td></tr>
+</table>
+<p style="margin-top:8px"><strong>非物质文化遗产（高频考点）：</strong></p>
+<table>
+<tr><th>类别</th><th>项目</th><th>所在地</th></tr>
+<tr><td>传统戏剧</td><td>越剧（中国第二大剧种）</td><td>绍兴嵊州发源</td></tr>
+<tr><td>传统技艺</td><td>龙泉青瓷烧制技艺</td><td>丽水龙泉</td></tr>
+<tr><td>传统技艺</td><td>中国蚕桑丝织技艺</td><td>杭州、嘉兴、湖州</td></tr>
+<tr><td>传统美术</td><td>青田石雕</td><td>丽水青田</td></tr>
+<tr><td>传统医药</td><td>胡庆余堂中药文化</td><td>杭州</td></tr>
+<tr><td>传统技艺</td><td>西湖龙井茶制作技艺</td><td>杭州</td></tr>
+</table>
+<p style="font-size:12px;color:#7b8da0;margin-top:6px">速记口诀：两遗（西湖+运河）+ 一址（良渚）+ 一山（江郎）= 浙江四大世界遗产</p>
+<p style="font-size:12px;color:#7b8da0">非遗速记：越剧龙泉青瓷丝，石雕龙井胡庆余</p>
+</div></div>
+
+<div class="block"><h4>🏛️ 浙江省情 · 经济数据速记</h4><div class="content">
+<table>
+<tr><th>指标</th><th>数据</th><th>全国排名</th><th>记忆要点</th></tr>
+<tr><td>GDP总量</td><td>约8.3万亿（2024）</td><td>第4</td><td>仅次于广东、江苏、山东</td></tr>
+<tr><td>人均GDP</td><td>约12.5万元</td><td>省区第1</td><td>仅次于北京、上海（直辖市）</td></tr>
+<tr><td>数字经济占比</td><td>29%+</td><td>全国第1</td><td>杭州是"数字经济第一城"</td></tr>
+<tr><td>民企500强</td><td>100+家</td><td>连续25年全国第1</td><td>温州是民营经济发祥地</td></tr>
+<tr><td>外贸出口</td><td>全国前列</td><td>第3</td><td>宁波舟山港货物吞吐量全球第1</td></tr>
+<tr><td>居民收入</td><td>城镇8.2万/农村4.4万</td><td>省区第1</td><td>城乡收入倍差1.86，全国最小之一</td></tr>
+</table>
+<p style="margin-top:8px"><strong>浙江"三个第一"（必考）：</strong></p>
+<p>① 数字经济占GDP比重——全国第一<br>② 人均GDP（省区）——全国第一<br>③ 民营企业500强数量——连续25年全国第一</p>
+<p style="margin-top:8px"><strong>"七山一水二分田"</strong>——山地丘陵70%，平原20%，河流湖泊10%。浙江"七山"中蕴藏着丰富的生态资源（丽水、衢州），"一水"是钱塘江、千岛湖等水系，"二分田"集中在杭嘉湖平原和宁绍平原。</p>
+<p style="font-size:12px;color:#7b8da0;margin-top:6px">综应数据弹药：写大作文时，"连续25年全国第一""省区第一""占比近三成"可增强说服力</p>
+</div></div>
+
+<div class="block"><h4>📝 范文背诵段 · 今日主题：科技创新</h4><div class="content">
+<blockquote><p><strong>以科技创新之笔 绘浙江发展新篇（分论点一）</strong></p>
+<p>浙江作为制造业大省，传统产业占比高、转型压力大。从"机器换人"到"产业大脑"，从"未来工厂"到"灯塔工厂"，浙江以数字技术赋能传统制造，推动产业向高端化、智能化、绿色化迈进。2026年上半年，浙江数字经济核心产业增加值占GDP比重突破29%，"产业大脑+未来工厂"模式在全国推广。杭州城西科创大走廊集聚了全省60%以上的国家科技奖获奖项目，宁波甬江科创区成为新材料领域创新高地。实践证明，只有以科技创新驱动产业升级，才能让浙江制造迈向浙江智造、浙江创造。</p></blockquote>
+<p style="font-size:12px;color:#7b8da0;margin-top:6px">📌 选自范文《以科技创新之笔 绘浙江发展新篇》· 今日背诵分论点一 · 约200字 · 关键词：产业大脑、未来工厂、数字经济、新质生产力</p>
+<p style="font-size:12px;color:#ef5350;margin-top:4px">💪 周末背书记：今天周六，上午背完这一段，下午午休刷题，晚上攻克资料分析！</p>
+</div></div>
+
+<div style="text-align:right;margin-top:12px">
+  <button onclick="printTab('materials')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:6px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+</div>
+
+
+	<div class="block"><h4>🍜 午休刷题 — 数量关系 25题（周六加量）</h4><div class="content">
+	<div id="quiz-0801">
+	<script class="answer-bank" type="application/json">{"answers":["B","C","D","A","A","C","C","D","A","B","B","A","C","B","C","C","B","C","C","D","B","B","C","B","D"]}</script>
+	<p style="color:#7b8da0;font-size:12px;margin-bottom:12px">📋 今日主题：数学运算（15题）+ 数字推理（10题）· 浙江特色 · 周末加量25题 · 每题限时90秒</p>
+
+	<p><strong>一、数学运算（15题）</strong></p>
+
+	<div class="q-block" data-qid="Q1" data-module="数量关系"><p class="q-text"><strong>1.</strong> 一项工程，甲单独做需12天，乙单独做需18天。两人合作3天后甲离开，剩下乙单独完成。乙还需多少天？</p>
+	<div class="options"><span>A. 8天</span><span>B. 10.5天</span><span>C. 12天</span><span>D. 15天</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 设总量36（12和18的最小公倍数），甲效率3/天，乙效率2/天。合作3天：(3+2)×3=15，剩余21。乙单独：21÷2=10.5天。</p></div></div>
+
+	<div class="q-block" data-qid="Q2" data-module="数量关系"><p class="q-text"><strong>2.</strong> 甲、乙从A、B两地同时相向而行，甲速是乙速的1.5倍。相遇后甲走完剩余路程用了2小时，乙走完剩余路程用了多少小时？</p>
+	<div class="options"><span>A. 3小时</span><span>B. 4小时</span><span>C. 4.5小时</span><span>D. 5小时</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 设乙速为2，甲速为3。相遇时路程比=速度比=3:2。甲走乙的2份路程用2h→每份1h。乙走甲的3份路程：3÷(2/3)=4.5h。或：t₂=t₁×(v甲/v乙)²=2×1.5²=4.5。</p></div></div>
+
+	<div class="q-block" data-qid="Q3" data-module="数量关系"><p class="q-text"><strong>3.</strong> 商品按定价打八折出售，仍获利20%。定价时期望的利润率是多少？</p>
+	<div class="options"><span>A. 40%</span><span>B. 45%</span><span>C. 48%</span><span>D. 50%</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 设成本100，期望利润率x%。售价=100×1.2=120=100(1+x%)×0.8 → 1+x%=1.5 → x=50%。</p></div></div>
+
+	<div class="q-block" data-qid="Q4" data-module="数量关系"><p class="q-text"><strong>4.</strong> 1~100中，既不是3的倍数也不是5的倍数的数有多少个？</p>
+	<div class="options"><span>A. 53</span><span>B. 55</span><span>C. 57</span><span>D. 59</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 3的倍数33个，5的倍数20个，15的倍数6个（重复）。至少是之一：33+20-6=47。都不是：100-47=53。</p></div></div>
+
+	<div class="q-block" data-qid="Q5" data-module="数量关系"><p class="q-text"><strong>5.</strong> 6本不同的书分给甲、乙、丙三人，每人至少1本，有多少种分法？</p>
+	<div class="options"><span>A. 540</span><span>B. 720</span><span>C. 900</span><span>D. 1080</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 总分配3⁶=729。减去有人没分到：3×2⁶=192，加回两人没分到：3×1=3。729-192+3=540。或用第二类斯特林数S(6,3)×3!=90×6=540。</p></div></div>
+
+	<div class="q-block" data-qid="Q6" data-module="数量关系"><p class="q-text"><strong>6.</strong> 班级50人，参加数学竞赛30人，物理竞赛25人，两科都没参加10人。两科都参加的有多少人？</p>
+	<div class="options"><span>A. 10人</span><span>B. 12人</span><span>C. 15人</span><span>D. 18人</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 至少参加一科：50-10=40人。两科都参加：30+25-40=15人。容斥原理：|A∪B|=|A|+|B|-|A∩B|。</p></div></div>
+
+	<div class="q-block" data-qid="Q7" data-module="数量关系"><p class="q-text"><strong>7.</strong> 甲给乙10本书，两人书数相等；乙给甲10本，甲的书是乙的2倍。甲原有多少本？</p>
+	<div class="options"><span>A. 50本</span><span>B. 60本</span><span>C. 70本</span><span>D. 80本</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 设甲x本，乙y本。x-10=y+10 → x-y=20。x+10=2(y-10) → x-2y=-30。联立：y=50，x=70。</p></div></div>
+
+	<div class="q-block" data-qid="Q8" data-module="数量关系"><p class="q-text"><strong>8.</strong> 甲容器16%盐水300克，乙容器25%盐水200克。交换等量盐水后浓度相同，取出多少克？</p>
+	<div class="options"><span>A. 100克</span><span>B. 110克</span><span>C. 115克</span><span>D. 120克</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 公式：x=ab/(a+b)=300×200/500=120克。交换后浓度相等：(300×16%+200×25%)/500=19.6%。</p></div></div>
+
+	<div class="q-block" data-qid="Q9" data-module="数量关系"><p class="q-text"><strong>9.</strong> 2026年8月1日是星期六，国庆节10月1日是星期几？</p>
+	<div class="options"><span>A. 星期四</span><span>B. 星期五</span><span>C. 星期六</span><span>D. 星期日</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 8月1日→10月1日：8月剩30天+9月30天+10月1天=61天。61÷7=8余5。星期六+5=星期四。</p></div></div>
+
+	<div class="q-block" data-qid="Q10" data-module="数量关系"><p class="q-text"><strong>10.</strong> 400米环形跑道，甲每分钟280米，乙每分钟220米。同向出发，甲多久第一次追上乙？</p>
+	<div class="options"><span>A. 5分钟</span><span>B. 6分40秒</span><span>C. 7分钟</span><span>D. 8分钟</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 追及时间=400÷(280-220)=400÷60=20/3≈6.67分钟=6分40秒。</p></div></div>
+
+	<div class="q-block" data-qid="Q11" data-module="数量关系"><p class="q-text"><strong>11.</strong> 三部门平均年龄：A=38岁，B=24岁，C=42岁。A和B平均30岁，B和C平均34岁。全体平均年龄？</p>
+	<div class="options"><span>A. 34岁</span><span>B. 35岁</span><span>C. 35.5岁</span><span>D. 36岁</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 设A、B、C人数为a、b、c。(38a+24b)/(a+b)=30 → a:b=3:4。(24b+42c)/(b+c)=34 → b:c=4:5。a:b:c=3:4:5。平均=(38×3+24×4+42×5)/(3+4+5)=420/12=35。</p></div></div>
+
+	<div class="q-block" data-qid="Q12" data-module="数量关系"><p class="q-text"><strong>12.</strong> 水池：甲管6h注满，乙管8h注满，丙管12h排完。三管齐开，多久注满？</p>
+	<div class="options"><span>A. 4.8小时</span><span>B. 5小时</span><span>C. 5.5小时</span><span>D. 6小时</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ A</strong> — 设总量24（LCM）。甲+4/h，乙+3/h，丙-2/h。合效率=5/h。时间=24÷5=4.8h。</p></div></div>
+
+	<div class="q-block" data-qid="Q13" data-module="数量关系"><p class="q-text"><strong>13.</strong> 5人年龄之和为180岁，年龄均为整数且互不相同，年龄最大的人最小可能是多少岁？</p>
+	<div class="options"><span>A. 36岁</span><span>B. 37岁</span><span>C. 38岁</span><span>D. 39岁</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 要使最大值最小，5人应尽可能接近。180÷5=36。若可相同：36,36,36,36,36。若互不相同：34,35,36,37,38，最大=38。题设"互不相同"，选C。</p></div></div>
+
+	<div class="q-block" data-qid="Q14" data-module="数量关系"><p class="q-text"><strong>14.</strong> 某数除以5余3，除以6余4，除以7余5。这个数最小是多少？</p>
+	<div class="options"><span>A. 148</span><span>B. 208</span><span>C. 218</span><span>D. 228</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 观察：5-3=2, 6-4=2, 7-5=2，即这个数+2能被5,6,7整除。LCM(5,6,7)=210。最小=210-2=208。</p></div></div>
+
+	<div class="q-block" data-qid="Q15" data-module="数量关系"><p class="q-text"><strong>15.</strong> 杭甬高铁一等座票价是二等座的1.5倍。买1张一等+2张二等共420元。一等座多少元？</p>
+	<div class="options"><span>A. 150元</span><span>B. 160元</span><span>C. 180元</span><span>D. 200元</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 设二等座x元，一等座1.5x元。1.5x+2x=420 → 3.5x=420 → x=120。一等座=180元。</p></div></div>
+
+	<p style="margin-top:16px"><strong>二、数字推理（10题）— 浙江特色必考</strong></p>
+
+	<div class="q-block" data-qid="Q16" data-module="数字推理"><p class="q-text"><strong>16.</strong> 2, 5, 10, 17, 26, ( )</p>
+	<div class="options"><span>A. 35</span><span>B. 36</span><span>C. 37</span><span>D. 38</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 二级等差：差值3,5,7,9,(11)，26+11=37。或n²+1：6²+1=37。</p></div></div>
+
+	<div class="q-block" data-qid="Q17" data-module="数字推理"><p class="q-text"><strong>17.</strong> 3, 6, 12, 24, 48, ( )</p>
+	<div class="options"><span>A. 72</span><span>B. 96</span><span>C. 84</span><span>D. 108</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 等比数列，公比2。48×2=96。</p></div></div>
+
+	<div class="q-block" data-qid="Q18" data-module="数字推理"><p class="q-text"><strong>18.</strong> 1, 1, 2, 6, 24, ( )</p>
+	<div class="options"><span>A. 72</span><span>B. 96</span><span>C. 120</span><span>D. 144</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 递推：aₙ=aₙ₋₁×(n-1)。1×1=1, 1×2=2, 2×3=6, 6×4=24, 24×5=120。即阶乘：1!,1!,2!,3!,4!,5!。</p></div></div>
+
+	<div class="q-block" data-qid="Q19" data-module="数字推理"><p class="q-text"><strong>19.</strong> 1/2, 2/3, 3/4, 4/5, ( )</p>
+	<div class="options"><span>A. 4/6</span><span>B. 5/5</span><span>C. 5/6</span><span>D. 6/7</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 分子分母分别等差。分子：1,2,3,4,(5)；分母：2,3,4,5,(6)。下项=5/6。</p></div></div>
+
+	<div class="q-block" data-qid="Q20" data-module="数字推理"><p class="q-text"><strong>20.</strong> 1, 3, 4, 7, 11, ( )</p>
+	<div class="options"><span>A. 14</span><span>B. 15</span><span>C. 17</span><span>D. 18</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 递推：前两项之和=第三项。1+3=4, 3+4=7, 4+7=11, 7+11=18。</p></div></div>
+
+	<div class="q-block" data-qid="Q21" data-module="数字推理"><p class="q-text"><strong>21.</strong> 2, 3, 8, 63, ( )</p>
+	<div class="options"><span>A. 3000</span><span>B. 3968</span><span>C. 4000</span><span>D. 4225</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 平方变式：2²-1=3, 3²-1=8, 8²-1=63, 63²-1=3969-1=3968。</p></div></div>
+
+	<div class="q-block" data-qid="Q22" data-module="数字推理"><p class="q-text"><strong>22.</strong> 0, 6, 24, 60, 120, ( )</p>
+	<div class="options"><span>A. 180</span><span>B. 210</span><span>C. 240</span><span>D. 252</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — n³-n：1³-1=0, 2³-2=6, 3³-3=24, 4³-4=60, 5³-5=120, 6³-6=210。</p></div></div>
+
+	<div class="q-block" data-qid="Q23" data-module="数字推理"><p class="q-text"><strong>23.</strong> 1, 2, 6, 15, 31, ( )</p>
+	<div class="options"><span>A. 46</span><span>B. 50</span><span>C. 56</span><span>D. 60</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ C</strong> — 二级等差：差值1,4,9,16,(25) → 1²,2²,3²,4²,5²。31+25=56。</p></div></div>
+
+	<div class="q-block" data-qid="Q24" data-module="数字推理"><p class="q-text"><strong>24.</strong> 1/2, 1, 3/2, 2, 5/2, ( )</p>
+	<div class="options"><span>A. 5/2</span><span>B. 3</span><span>C. 7/2</span><span>D. 4</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ B</strong> — 等差数列，公差1/2。5/2+1/2=6/2=3。</p></div></div>
+
+	<div class="q-block" data-qid="Q25" data-module="数字推理"><p class="q-text"><strong>25.</strong> 2, 5, 9, 19, 37, ( )</p>
+	<div class="options"><span>A. 65</span><span>B. 70</span><span>C. 73</span><span>D. 75</span></div>
+	<p style="margin:4px 0 0;font-size:12px;">答案：<input type="text" class="quiz-ans" maxlength="1" placeholder="?" style="width:36px;padding:2px 4px;border:2px solid #d0d8e0;border-radius:4px;text-align:center"></p>
+	<div class="q-detail" style="display:none"><p style="color:#2e7d32;font-size:12px"><strong>✅ D</strong> — 递推：2×2+1=5, 5×2-1=9, 9×2+1=19, 19×2-1=37, 37×2+1=75。规律：×2交替±1。</p></div></div>
+
+	<p style="margin-top:12px;text-align:center">
+	  <button onclick="gradeQuiz('quiz-0801')" style="background:#14a3a8;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600">✅ 对答案</button>
+	</p>
+	<div id="quiz-0801-result" style="display:none"></div>
+	</div>
+	</div></div>
+
+	<div style="text-align:right;margin-top:12px">
+	  <button onclick="printTab('materials')" style="background:#fff;border:2px solid #0d7377;color:#0d7377;padding:6px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">📥 下载PDF</button>
+	</div>
+	</div>
+      <div id="md0802" class="day-section" style="display:none"><h3>8月2日 周日 <span class="badge">基础夯实</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0803" class="day-section" style="display:none"><h3>8月3日 周一 <span class="badge">基础夯实</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0804" class="day-section" style="display:none"><h3>8月4日 周二 <span class="badge">一阶段开始</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0805" class="day-section" style="display:none"><h3>8月5日 周三 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
     </div>
+  </div>
   </div>
 </div>
 
 <!-- ==================== 考情分析 ==================== -->
 <div id="tab-exam" class="tab-content">
+  <div class="container">
   <h1>考情分析</h1>
   <p class="subtitle">持续追踪浙江事业编考试最新动态 · 最后更新 2026-07-30</p>
 
@@ -631,9 +1093,11 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
     </div>
   </div>
 </div>
+</div>
 
 <!-- ==================== 浙江省情 ==================== -->
 <div id="tab-zj" class="tab-content">
+  <div class="container">
   <h1>浙江省情速记手册</h1>
   <p class="subtitle">常识判断高频考点 · 晨读背诵专用</p>
 
@@ -797,146 +1261,326 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
     </div>
   </div>
 </div>
+</div>
 
 <!-- ==================== 错题本 ==================== -->
 <div id="tab-errors" class="tab-content">
+  <div class="container">
   <h1>错题本</h1>
-  <p class="subtitle">每次错题都记录，薄弱点一目了然</p>
-
-  <div class="stats" style="margin-bottom:20px">
-    <div class="stat"><div class="val">5</div><div class="label">总错题</div></div>
-    <div class="stat"><div class="val">3</div><div class="label">逻辑判断</div></div>
-    <div class="stat"><div class="val">1</div><div class="label">定义判断</div></div>
-    <div class="stat"><div class="val">1</div><div class="label">类比推理</div></div>
-    <div class="stat"><div class="val">0</div><div class="label">图形推理</div></div>
+  <p class="subtitle">自动记录每次批改的错题 · 按日期分类</p>
+  <div style="text-align:right;margin-bottom:12px">
+    <button onclick="clearErrors()" style="background:#fff;border:1px solid #ffcdd2;color:#c62828;padding:4px 14px;border-radius:4px;font-size:12px;cursor:pointer">🗑️ 清空错题</button>
   </div>
-
-  <!-- 模块分布 -->
-  <div class="day-section">
-    <h3>📊 模块分布</h3>
-    <div style="display:flex;gap:12px;align-items:flex-end;height:120px;padding:10px 0;">
-      <div style="flex:1;text-align:center">
-        <div style="background:linear-gradient(180deg,#ef5350,#e57373);height:90px;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;color:#fff;font-weight:700;font-size:18px;">3</div>
-        <div style="font-size:11px;color:#7b8da0;margin-top:4px;">逻辑判断</div>
-      </div>
-      <div style="flex:1;text-align:center">
-        <div style="background:linear-gradient(180deg,#ff9800,#ffb74d);height:30px;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;color:#fff;font-weight:700;font-size:14px;">1</div>
-        <div style="font-size:11px;color:#7b8da0;margin-top:4px;">定义判断</div>
-      </div>
-      <div style="flex:1;text-align:center">
-        <div style="background:linear-gradient(180deg,#ff9800,#ffb74d);height:30px;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;color:#fff;font-weight:700;font-size:14px;">1</div>
-        <div style="font-size:11px;color:#7b8da0;margin-top:4px;">类比推理</div>
-      </div>
-      <div style="flex:1;text-align:center">
-        <div style="background:#e0e0e0;height:10px;border-radius:6px 6px 0 0;"></div>
-        <div style="font-size:11px;color:#7b8da0;margin-top:4px;">图形推理</div>
-      </div>
-    </div>
+  <div id="error-book-content">
+    <div class="empty-day"><div class="emoji">🎉</div><p>暂无错题，继续保持！</p></div>
   </div>
-
-  <!-- 错题列表 -->
-  <div class="day-section">
-    <h3>📋 2026-07-30 午休 · 判断推理 15题</h3>
-
-    <div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-        <span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">#6</span>
-        <span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:4px;font-size:12px">定义判断</span>
-        <span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">C</b> → 正确 <b style="color:#2e7d32">A</b></span>
-      </div>
-      <p style="font-size:13px;line-height:1.8;margin:0 0 6px"><strong>"逆向选择"：</strong>信息不对称下，劣质商品驱逐优质商品。A.二手车市场好车卖不出去 B.超市打折 C.求职者简历造假 D.餐馆特价菜</p>
-      <p style="font-size:12px;color:#7b8da0;margin:0">💡 简历造假是欺诈，不是"劣质驱逐优质"。逆向选择的关键是信息不对称导致劣币驱逐良币。</p>
-    </div>
-
-    <div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-        <span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">#9</span>
-        <span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:4px;font-size:12px">类比推理</span>
-        <span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">A</b> → 正确 <b style="color:#2e7d32">B</b></span>
-      </div>
-      <p style="font-size:13px;line-height:1.8;margin:0 0 6px"><strong>浙江：杭州 :: 江苏：？</strong> A.苏州 B.南京 C.无锡 D.上海</p>
-      <p style="font-size:12px;color:#7b8da0;margin:0">💡 省:省会关系。苏州不是省会，南京才是江苏省会。</p>
-    </div>
-
-    <div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-        <span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">#11</span>
-        <span style="background:#fce4ec;color:#c62828;padding:2px 8px;border-radius:4px;font-size:12px">逻辑判断</span>
-        <span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">C</b> → 正确 <b style="color:#2e7d32">D</b></span>
-      </div>
-      <p style="font-size:13px;line-height:1.8;margin:0 0 6px"><strong>有人喜欢篮球，有人喜欢足球。</strong>哪项一定为真？A.有人不喜欢篮球 B.有人既喜欢篮球又喜欢足球 C.有人至少喜欢其中一种 D.不能确定</p>
-      <p style="font-size:12px;color:#7b8da0;margin:0">💡 特称命题（"有人"）推不出任何必然结论，D 是最稳妥的答案。</p>
-    </div>
-
-    <div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-        <span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">#12</span>
-        <span style="background:#fce4ec;color:#c62828;padding:2px 8px;border-radius:4px;font-size:12px">逻辑判断</span>
-        <span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">D</b> → 正确 <b style="color:#2e7d32">B</b></span>
-      </div>
-      <p style="font-size:13px;line-height:1.8;margin:0 0 6px"><strong>所有考生都考职测，有些考生也考综应。</strong>可以推出：A.所有考职测的都考综应 B.有些考职测的也考综应 C.不考综应的一定不考职测 D.考职测的不一定考综应</p>
-      <p style="font-size:12px;color:#7b8da0;margin:0">💡 三段论：all(A→B) + some(A→C) → some(B→C)，即"有些考职测的也考综应"。</p>
-    </div>
-
-    <div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
-        <span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">#13</span>
-        <span style="background:#fce4ec;color:#c62828;padding:2px 8px;border-radius:4px;font-size:12px">逻辑判断</span>
-        <span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">A</b> → 正确 <b style="color:#2e7d32">C</b></span>
-      </div>
-      <p style="font-size:13px;line-height:1.8;margin:0 0 6px"><strong>限行后拥堵指数下降15%。</strong>最能削弱"限行有效"的是：A.同期新增地铁 B.很多市民买第二辆车 C.限行前拥堵指数已在下降 D.市民支持限行</p>
-      <p style="font-size:12px;color:#7b8da0;margin:0">💡 最强削弱=否定因果方向。C 证明下降趋势在限行前就存在，与限行无关。</p>
-    </div>
-  </div>
-
-  <!-- 薄弱点分析 -->
-  <div class="day-section">
-    <h3>🎯 薄弱点分析</h3>
-    <div class="content">
-      <table>
-        <tr><th>薄弱点</th><th>错题数</th><th>优先级</th><th>建议</th></tr>
-        <tr>
-          <td><strong>逻辑判断</strong></td>
-          <td>3</td>
-          <td><span style="color:#c62828;font-weight:600">🔴 高</span></td>
-          <td>专项练习三段论、削弱加强、真假话推理</td>
-        </tr>
-        <tr>
-          <td><strong>定义判断</strong></td>
-          <td>1</td>
-          <td><span style="color:#ff9800;font-weight:600">🟡 中</span></td>
-          <td>注意关键词匹配，区分近似概念</td>
-        </tr>
-        <tr>
-          <td><strong>类比推理</strong></td>
-          <td>1</td>
-          <td><span style="color:#ff9800;font-weight:600">🟡 中</span></td>
-          <td>补充常识知识（省会、地理等）</td>
-        </tr>
-      </table>
-    </div>
   </div>
 </div>
 
 <script>
+// ===== 动态统计 =====
+(function() {
+  var EXAM_DATE = new Date(2026, 8, 19);
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  var daysLeft = Math.max(0, Math.ceil((EXAM_DATE - today) / 86400000));
+  document.getElementById('stat-days').textContent = daysLeft;
+
+  var y = today.getFullYear(), m = today.getMonth() + 1, d = today.getDate();
+  document.getElementById('date-range').textContent =
+    y + '年' + m + '月' + d + '日 — 9月19日 · 共' + daysLeft + '天';
+
+  var tasks = document.querySelectorAll('.cal .day .task');
+  var countMock = 0, countEssay = 0, countZhongying = 0, countZhice = 0;
+  tasks.forEach(function(t) {
+    var txt = t.textContent;
+    if (txt.includes('全真模考') || txt.includes('摸底模考')) countMock++;
+    if (txt.includes('大作文')) countEssay++;
+    if (txt.includes('综应-限时训练')) countZhongying++;
+    if (txt.includes('职测-模考')) countZhice++;
+  });
+  document.getElementById('stat-mock').textContent = countMock;
+  document.getElementById('stat-essay').textContent = countEssay;
+  document.getElementById('stat-zhongying').textContent = countZhongying;
+  document.getElementById('stat-zhice').textContent = countZhice;
+})();
+
+// ===== 日期格式化 =====
+function todayStr() {
+  var t = new Date();
+  var weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
+  return t.getFullYear() + '年' + (t.getMonth()+1) + '月' + t.getDate() + '日 ' + weekdays[t.getDay()];
+}
+function updateMorningDate() {
+  var el = document.getElementById('morning-date');
+  if (el) el.textContent = todayStr() + ' 早读 · 通勤时间 20分钟';
+}
+function updateNoonDate() {
+  var el = document.getElementById('noon-date');
+  if (el) el.textContent = todayStr() + ' 午休刷题 · 30题约45分钟';
+}
+function updateEveningDate() {
+  var el = document.getElementById('evening-date');
+  if (el) el.textContent = todayStr() + ' 晚间学习 · 约3小时';
+}
+
+// ===== 自动保存答案到 localStorage =====
+function saveQuizAnswers(quizId) {
+  var container = document.getElementById(quizId);
+  if (!container) return;
+  var inputs = container.querySelectorAll('input.quiz-ans');
+  var answers = [];
+  inputs.forEach(function(inp) { answers.push(inp.value.trim().toUpperCase()); });
+  localStorage.setItem('quiz-save-' + quizId, JSON.stringify(answers));
+}
+
+function restoreQuizAnswers(quizId) {
+  var saved = localStorage.getItem('quiz-save-' + quizId);
+  if (!saved) return;
+  var answers = JSON.parse(saved);
+  var container = document.getElementById(quizId);
+  if (!container) return;
+  var inputs = container.querySelectorAll('input.quiz-ans');
+  inputs.forEach(function(inp, i) {
+    if (answers[i]) inp.value = answers[i];
+  });
+}
+
+// 页面加载时恢复所有已保存的答案
+(function() {
+  var quizzes = document.querySelectorAll('[id^="quiz-"]');
+  quizzes.forEach(function(q) { restoreQuizAnswers(q.id); });
+})();
+
+// ===== 自动批改 =====
+function gradeQuiz(quizId) {
+  var container = document.getElementById(quizId);
+  if (!container) return;
+
+  // 读取答案库
+  var bankEl = container.querySelector('.answer-bank');
+  if (!bankEl) { alert('暂无答案数据'); return; }
+  var answers;
+  try { answers = JSON.parse(bankEl.textContent).answers; }
+  catch(e) { alert('答案数据解析失败'); return; }
+
+  // 重置所有输入框样式
+  var inputs = container.querySelectorAll('input.quiz-ans');
+  inputs.forEach(function(inp) {
+    inp.style.borderColor = '#d0d8e0';
+    inp.style.backgroundColor = '#fff';
+  });
+
+  // 折叠所有解析
+  var details = container.querySelectorAll('.q-detail');
+  details.forEach(function(d) { d.style.display = 'none'; });
+
+  var total = inputs.length, correct = 0;
+  var wrongList = [];
+  var dateKey = quizId.replace('quiz-', '');
+
+  inputs.forEach(function(inp, i) {
+    var userAns = inp.value.trim().toUpperCase();
+    var correctAns = answers[i];
+    var qBlock = inp.closest('.q-block');
+    var detail = qBlock ? qBlock.querySelector('.q-detail') : null;
+
+    // 展开解析
+    if (detail) detail.style.display = 'block';
+
+    if (userAns === correctAns) {
+      correct++;
+      inp.style.borderColor = '#2e7d32';
+      inp.style.backgroundColor = '#e8f5e9';
+    } else {
+      inp.style.borderColor = '#c62828';
+      inp.style.backgroundColor = '#ffebee';
+      if (qBlock) {
+        wrongList.push({
+          qid: qBlock.getAttribute('data-qid') || ('Q'+(i+1)),
+          module: qBlock.getAttribute('data-module') || '未知',
+          userAnswer: userAns || '未填',
+          correctAnswer: correctAns,
+          question: qBlock.querySelector('.q-text') ? qBlock.querySelector('.q-text').textContent.trim().substring(0, 200) : '',
+          explanation: detail ? detail.textContent.trim().substring(0, 300) : ''
+        });
+      }
+    }
+  });
+
+  // 显示结果
+  var resultEl = document.getElementById(quizId + '-result');
+  if (resultEl) {
+    var pct = Math.round(correct / total * 100);
+    resultEl.innerHTML = '<div style="background:#f0faf9;border-radius:8px;padding:14px;text-align:center;margin-top:12px">' +
+      '<span style="font-size:24px;font-weight:700;color:#0d7377">' + pct + '%</span> ' +
+      '<span style="font-size:14px;color:#5a6d80">正确 ' + correct + '/' + total + '</span>' +
+      (wrongList.length > 0 ? ' <span style="color:#c62828;font-size:13px">错题 ' + wrongList.length + ' 道已自动存入错题本</span>' : ' <span style="color:#2e7d32;font-size:13px">🎉 全部正确！</span>') +
+      '</div>';
+    resultEl.style.display = 'block';
+  }
+
+  // 错题存入 localStorage
+  if (wrongList.length > 0) saveErrors(dateKey, wrongList);
+}
+
+// ===== 错题本 localStorage =====
+function saveErrors(dateKey, wrongList) {
+  var storage = JSON.parse(localStorage.getItem('error-book') || '{}');
+  // 覆盖该次批改的错题：先移除同 quizId 的旧错题，再写入新的
+  var newIds = wrongList.map(function(w) { return w.qid; });
+  if (storage[dateKey]) {
+    storage[dateKey] = storage[dateKey].filter(function(e) {
+      return newIds.indexOf(e.qid) === -1;
+    });
+  } else {
+    storage[dateKey] = [];
+  }
+  // 追加新错题
+  wrongList.forEach(function(w) { storage[dateKey].push(w); });
+  localStorage.setItem('error-book', JSON.stringify(storage));
+}
+
+function getErrorStats() {
+  var storage = JSON.parse(localStorage.getItem('error-book') || '{}');
+  var total = 0, modules = {};
+  Object.keys(storage).forEach(function(date) {
+    (storage[date] || []).forEach(function(e) {
+      total++;
+      modules[e.module] = (modules[e.module] || 0) + 1;
+    });
+  });
+  return { total: total, modules: modules };
+}
+
+function renderErrorBook() {
+  var storage = JSON.parse(localStorage.getItem('error-book') || '{}');
+  var container = document.getElementById('error-book-content');
+  if (!container) return;
+
+  var dates = Object.keys(storage).sort().reverse();
+  if (dates.length === 0) {
+    container.innerHTML = '<div class="empty-day"><div class="emoji">🎉</div><p>暂无错题，继续保持！</p></div>';
+    return;
+  }
+
+  var stats = getErrorStats();
+  var html = '<div class="stats" style="margin-bottom:20px">';
+  html += '<div class="stat"><div class="val">' + stats.total + '</div><div class="label">总错题</div></div>';
+  Object.keys(stats.modules).sort(function(a,b){ return stats.modules[b] - stats.modules[a]; }).forEach(function(m) {
+    html += '<div class="stat"><div class="val">' + stats.modules[m] + '</div><div class="label">' + m + '</div></div>';
+  });
+  html += '</div>';
+
+  dates.forEach(function(date) {
+    var errors = storage[date] || [];
+    var dateLabel = '20' + date.substring(0,2) + '-' + date.substring(2,4) + '-' + date.substring(4,6);
+    html += '<details class="error-group" style="margin-bottom:12px" open>' +
+      '<summary style="cursor:pointer;background:#fff;border-radius:10px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,0.04);font-size:14px;font-weight:600;color:#1a2a3a;display:flex;align-items:center;gap:8px">' +
+      '<span style="font-size:18px">📋</span> ' + dateLabel + ' · ' + errors.length + '道错题' +
+      '<span style="margin-left:auto;font-size:11px;color:#7b8da0;font-weight:400">' + errors.length + '题 ▼</span>' +
+      '</summary>' +
+      '<div style="padding:12px 0 0">';
+    errors.forEach(function(e) {
+      html += '<div style="background:#fff5f5;border:1px solid #ffcdd2;border-radius:8px;padding:12px;margin-bottom:10px">' +
+        '<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap">' +
+        '<span style="background:#c62828;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600">' + e.qid + '</span>' +
+        '<span style="background:#fce4ec;color:#c62828;padding:2px 8px;border-radius:4px;font-size:12px">' + e.module + '</span>' +
+        '<span style="font-size:12px;color:#7b8da0">错选 <b style="color:#c62828">' + e.userAnswer + '</b> → 正确 <b style="color:#2e7d32">' + e.correctAnswer + '</b></span>' +
+        '</div>' +
+        (e.question ? '<p style="font-size:13px;line-height:1.8;margin:0 0 6px">' + e.question + '</p>' : '') +
+        (e.explanation ? '<p style="font-size:12px;color:#7b8da0;margin:0">💡 ' + e.explanation + '</p>' : '') +
+        '</div>';
+    });
+    html += '</div></details>';
+  });
+  container.innerHTML = html;
+}
+
+function clearErrors() {
+  if (confirm('确定要清空所有错题记录吗？此操作不可恢复。')) {
+    localStorage.removeItem('error-book');
+    renderErrorBook();
+  }
+}
+
+// ===== 打印/下载 PDF =====
+function printTab(tabId) {
+  // 激活对应 tab
+  switchTab(tabId);
+  setTimeout(function() { window.print(); }, 300);
+}
+
+// ===== 范文预览 =====
+function previewEssay(id) {
+  var panel = document.getElementById('essay-preview');
+  var content = document.getElementById('essay-preview-content');
+  var title = document.getElementById('essay-preview-title');
+  var src = document.getElementById(id);
+  if (!panel || !src) return;
+  title.textContent = src.getAttribute('data-title') || '范文预览';
+  content.innerHTML = src.innerHTML;
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+function closeEssayPreview() {
+  var panel = document.getElementById('essay-preview');
+  if (panel) panel.style.display = 'none';
+}
+
+// ===== Tab 切换 =====
 function switchTab(name) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav .tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  var labels = {plan:'学习计划',materials:'学习资料',exam:'考情分析',zj:'浙江省情',errors:'错题本'};
+  var labels = {plan:'学习计划',materials:'学习资料',essays:'范文宝库',errors:'错题本',exam:'考情分析',zj:'浙江省情'};
   document.querySelectorAll('.nav .tab').forEach(t => {
     if (t.textContent.includes(labels[name])) t.classList.add('active');
   });
+  if (name === 'materials') {
+    var now = new Date();
+    var todayId = ('0' + (now.getMonth()+1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+    // 先尝试今天，找不到就回退到 0731
+    if (document.getElementById('md' + todayId)) {
+      showMaterialDay(todayId);
+    } else {
+      showMaterialDay('0731');
+    }
+  }
+  if (name === 'errors') renderErrorBook();
 }
-function showDay(id) {
-  document.querySelectorAll('.materials-main .day-section').forEach(d => d.style.display = 'none');
-  document.getElementById('d' + id).style.display = 'block';
-  return false;
-}
+
 function toggleAnswers(id) {
   var el = document.getElementById(id);
   el.style.display = el.style.display === 'none' ? 'block' : 'none';
 }
+
+function showMaterialDay(id) {
+  // 确保学习资料 tab 是激活状态
+  var tab = document.getElementById('tab-materials');
+  if (tab && !tab.classList.contains('active')) {
+    document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+    document.querySelectorAll('.nav .tab').forEach(function(t) { t.classList.remove('active'); });
+    var labels = {plan:'学习计划',materials:'学习资料',essays:'范文宝库',errors:'错题本',exam:'考情分析',zj:'浙江省情'};
+    document.querySelectorAll('.nav .tab').forEach(function(t) {
+      if (t.textContent.includes('学习资料')) t.classList.add('active');
+    });
+  }
+  document.querySelectorAll('#materials-main .day-section').forEach(function(d) { d.style.display = 'none'; });
+  var el = document.getElementById('md' + id);
+  if (el) el.style.display = 'block';
+}
+
+// ===== 初始化 =====
+// 全局自动保存：所有 quiz-ans 输入框输入时自动保存
+document.addEventListener('input', function(e) {
+  if (e.target.classList.contains('quiz-ans')) {
+    var quiz = e.target.closest('[id^="quiz-"]');
+    if (quiz) saveQuizAnswers(quiz.id);
+  }
+});
 </script>
 </body>
 </html>
