@@ -137,6 +137,10 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
   .cube-unfold .face { width:32px; height:32px; font-size:10px; }
   .legend { gap:8px; font-size:11px; }
   input.ans { width:30px!important; font-size:13px!important; }
+  input.quiz-ans { width:36px; padding:2px 4px; border:2px solid #d0d8e0; border-radius:4px; text-align:center; font-size:13px; }
+  .q-block { margin-bottom:12px; padding:8px; background:#fafbfc; border-radius:8px; border:1px solid #e8edf2; }
+  .q-block p { margin:4px 0; }
+  .q-detail { margin-top:4px; padding:6px 10px; background:#f0faf9; border-radius:4px; font-size:13px; color:#2e7d32; }
   textarea { font-size:14px!important; }
 }
 
@@ -490,6 +494,18 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
       <a href="javascript:void(0)" onclick="showMaterialDay('0803')">8月3日 周一</a>
       <a href="javascript:void(0)" onclick="showMaterialDay('0804')">8月4日 周二</a>
       <a href="javascript:void(0)" onclick="showMaterialDay('0805')">8月5日 周三</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0806')">8月6日 周四</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0807')">8月7日 周五</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0808')">8月8日 周六</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0809')">8月9日 周日</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0810')">8月10日 周一</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0811')">8月11日 周二</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0812')">8月12日 周三</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0813')">8月13日 周四</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0814')">8月14日 周五</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0815')">8月15日 周六</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0816')">8月16日 周日</a>
+      <a href="javascript:void(0)" onclick="showMaterialDay('0817')">8月17日 周一</a>
     </div>
     <div class="materials-main" id="materials-main">
       <div id="md0730" class="day-section" style="display:none">
@@ -1042,6 +1058,193 @@ h1 { font-size:24px; color:#1a2a3a; margin-bottom:6px; }
       <div id="md0803" class="day-section" style="display:none"><h3>8月3日 周一 <span class="badge">基础夯实</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
       <div id="md0804" class="day-section" style="display:none"><h3>8月4日 周二 <span class="badge">一阶段开始</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
       <div id="md0805" class="day-section" style="display:none"><h3>8月5日 周三 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0806" class="day-section" style="display:none"><h3>8月6日 周四 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0807" class="day-section" style="display:none"><h3>8月7日 周五 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0808" class="day-section" style="display:none"><h3>8月8日 周六 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0809" class="day-section" style="display:none"><h3>8月9日 周日 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0810" class="day-section" style="display:none"><h3>8月10日 周一 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0811" class="day-section" style="display:none"><h3>8月11日 周二 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0812" class="day-section" style="display:none"><h3>8月12日 周三 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0813" class="day-section" style="display:none"><h3>8月13日 周四 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0814" class="day-section" style="display:none"><h3>8月14日 周五 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0815" class="day-section" style="display:none"><h3>8月15日 周六 <span class="badge">一阶段</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0816" class="day-section" style="display:none"><h3>8月16日 周日 <span class="badge">全真模考</span></h3><div class="empty-day"><div class="emoji">📝</div><p>前一天晚间自动生成</p></div></div>
+      <div id="md0817" class="day-section"><h3>8月17日 周一 <span class="badge">一阶段</span></h3>
+        <div class="block"><h4>🍜 午休刷题 — 判断推理 15题</h4><div class="content">
+<div id="quiz-0817">
+<script class="answer-bank" type="application/json">{"answers":["C","A","B","A","A","B","A","B","B","D","B","C","B","B","B"]}</script>
+<div class="q-block" data-qid="Q1" data-module="判断推理">
+<p><strong>1. 图形推理</strong> — 从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：</p>
+<div class="shapes">
+<span>○</span><span>△</span><span>□</span><span>○</span><span>△</span><span class="q">?</span>
+</div>
+<div class="options">
+<span>A. ○</span><span>B. △</span><span>C. □</span><span>D. ◇</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：C</strong> — 周期循环：○→△→□→○→△→□，每3个一组循环，第6个应为□。</div>
+</div>
+
+<div class="q-block" data-qid="Q2" data-module="判断推理">
+<p><strong>2. 图形推理</strong> — 下列图形中，与众不同的是：</p>
+<div class="options">
+<span>A. 田</span><span>B. 申</span><span>C. 由</span><span>D. 甲</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：A</strong> — "田"是轴对称+中心对称图形，其他三个（申/由/甲）只是轴对称，不是中心对称。</div>
+</div>
+
+<div class="q-block" data-qid="Q3" data-module="判断推理">
+<p><strong>3. 图形推理</strong> — 一个正方体纸盒的展开图如下，折叠后哪两个面是相对的？</p>
+<div class="cube-unfold">
+<div class="empty"></div><div class="face">A</div><div class="empty"></div>
+<div class="face">B</div><div class="face">C</div><div class="face">D</div>
+<div class="empty"></div><div class="face">E</div><div class="face">F</div>
+</div>
+<div class="options">
+<span>A. A和C</span><span>B. A和F</span><span>C. B和E</span><span>D. C和D</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 展开图中，A和F在"Z"字两端，是相对面。口诀：同行隔一个、异行"Z"字端。</div>
+</div>
+
+<div class="q-block" data-qid="Q4" data-module="判断推理">
+<p><strong>4. 定义判断</strong> — "搭便车效应"指在集体行动中，个人不付出成本而坐享他人之利。下列属于搭便车效应的是：</p>
+<div class="options">
+<span>A. 小区业主拒绝交电梯维修费，但每天使用电梯</span>
+<span>B. 员工加班完成项目，获得季度奖金</span>
+<span>C. 村民集体出资修路，人人受益</span>
+<span>D. 学生参加竞赛获奖，为学校争光</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：A</strong> — 不付出成本（拒交维修费）却享受他人付出带来的好处（使用电梯）。B付出了劳动，C集体出资，D付出了努力，均不符合。</div>
+</div>
+
+<div class="q-block" data-qid="Q5" data-module="判断推理">
+<p><strong>5. 定义判断</strong> — "逆向选择"指信息不对称导致市场失灵，劣质品驱逐优质品。下列属于逆向选择的是：</p>
+<div class="options">
+<span>A. 二手车市场：好车卖不出去，问题车反而好卖</span>
+<span>B. 超市打折促销，顾客排队抢购</span>
+<span>C. 求职者简历造假，获得面试机会</span>
+<span>D. 餐馆推出特价菜，吸引顾客消费</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：A</strong> — 卖家知道车况（信息优势），买家不知道（信息劣势），最终好车退出市场，劣质车充斥。B是正常促销，C是欺诈而非市场失灵，D是正常商业策略。</div>
+</div>
+
+<div class="q-block" data-qid="Q6" data-module="判断推理">
+<p><strong>6. 定义判断</strong> — "峰终定律"指人们对体验的评价主要取决于峰值时刻和结束时刻的感受。下列应用峰终定律的是：</p>
+<div class="options">
+<span>A. 医院就诊后赠送小礼品，缓解患者等待焦虑</span>
+<span>B. 餐厅在上菜高潮时提供最佳菜品，离店时赠送冰淇淋</span>
+<span>C. 银行按季度进行客户满意度调查</span>
+<span>D. 机场安检后提供免费WiFi</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 峰值（上菜高潮+最佳菜品）+终点（离店赠送冰淇淋），双重满足峰终定律。A只有终点，C是调查不是体验设计，D只有中间环节。</div>
+</div>
+
+<div class="q-block" data-qid="Q7" data-module="判断推理">
+<p><strong>7. 类比推理</strong> — 医生：医院 :: 教师：？</p>
+<div class="options">
+<span>A. 学校</span><span>B. 学生</span><span>C. 课本</span><span>D. 教育</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：A</strong> — 职业与工作场所的对应关系。医生在医院工作，教师在学校工作。</div>
+</div>
+
+<div class="q-block" data-qid="Q8" data-module="判断推理">
+<p><strong>8. 类比推理</strong> — 繁华：荒凉 :: 热烈：？</p>
+<div class="options">
+<span>A. 热情</span><span>B. 冷漠</span><span>C. 温暖</span><span>D. 激动</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 反义关系。繁华的反义词是荒凉，热烈的反义词是冷漠。</div>
+</div>
+
+<div class="q-block" data-qid="Q9" data-module="判断推理">
+<p><strong>9. 类比推理</strong> — 浙江：杭州 :: 江苏：？</p>
+<div class="options">
+<span>A. 苏州</span><span>B. 南京</span><span>C. 无锡</span><span>D. 上海</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 省与省会的对应关系。杭州是浙江省会，南京是江苏省会。苏州是经济强市但不是省会，上海是直辖市。</div>
+</div>
+
+<div class="q-block" data-qid="Q10" data-module="判断推理">
+<p><strong>10. 逻辑判断</strong> — 有人说："有人喜欢篮球，有人喜欢足球。"根据这句话，以下哪项一定为真？</p>
+<div class="options">
+<span>A. 有人不喜欢篮球</span>
+<span>B. 有人既喜欢篮球又喜欢足球</span>
+<span>C. 有人至少喜欢篮球或足球中的一种</span>
+<span>D. 不能确定</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：D</strong> — 特称命题"有人喜欢X"不能推出任何必然结论。A不一定（可能所有人都喜欢篮球），B不一定（可能是不同的人），C不一定（可能有人两种都不喜欢）。</div>
+</div>
+
+<div class="q-block" data-qid="Q11" data-module="判断推理">
+<p><strong>11. 逻辑判断</strong> — 所有考生都考职测，有些考生也考综应。由此可以推出：</p>
+<div class="options">
+<span>A. 所有考职测的都考综应</span>
+<span>B. 有些考职测的也考综应</span>
+<span>C. 不考综应的一定不考职测</span>
+<span>D. 考职测的不一定考综应</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 三段论推理：所有考生都考职测（大前提），有些考生也考综应（小前提），所以有些考职测的也考综应。</div>
+</div>
+
+<div class="q-block" data-qid="Q12" data-module="判断推理">
+<p><strong>12. 逻辑判断</strong> — 某市实施限行后，拥堵指数下降了15%。以下哪项最能削弱"限行有效"的结论？</p>
+<div class="options">
+<span>A. 同期新增了3条地铁线路</span>
+<span>B. 很多市民买了第二辆车应对限行</span>
+<span>C. 限行前拥堵指数已经在持续下降</span>
+<span>D. 市民普遍支持限行政策</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：C</strong> — 削弱因果关系。C说明拥堵下降是限行前就存在的趋势，不是限行导致的（他因削弱/趋势削弱）。A是替代解释，力度不如C直接否定因果。B反而支持限行有效。</div>
+</div>
+
+<div class="q-block" data-qid="Q13" data-module="判断推理">
+<p><strong>13. 逻辑判断</strong> — 甲、乙、丙三人中只有一人会游泳。甲说"我会"，乙说"我不会"，丙说"甲不会"。已知只有一人说真话，问谁会游泳？</p>
+<div class="options">
+<span>A. 甲</span><span>B. 乙</span><span>C. 丙</span><span>D. 无法确定</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 甲和丙的话矛盾（甲说"我会"vs丙说"甲不会"），必有一真一假。只有一人说真话，所以乙说的是假话，即乙会游泳。验证：甲不会（丙说真话），丙不会，乙会。只有丙说真话，符合。</div>
+</div>
+
+<div class="q-block" data-qid="Q14" data-module="判断推理">
+<p><strong>14. 逻辑判断</strong> — "杭州数字经济核心产业增加值占GDP比重超过28%。"以下哪项最能支持"数字经济是杭州经济发展的重要引擎"？</p>
+<div class="options">
+<span>A. 杭州是全国数字经济最发达的城市</span>
+<span>B. 数字经济占GDP比重逐年上升，且增速远超其他产业</span>
+<span>C. 杭州GDP总量全国第一</span>
+<span>D. 杭州其他产业正在萎缩</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 支持"重要引擎"需要证明数字经济对增长的拉动作用。B说明比重逐年上升+增速远超其他产业，证明其引擎作用。A是横向比较，C是虚假陈述，D是负面解释。</div>
+</div>
+
+<div class="q-block" data-qid="Q15" data-module="判断推理">
+<p><strong>15. 类比推理</strong> — 八八战略：浙江 :: ？：？</p>
+<div class="options">
+<span>A. 长三角一体化：上海</span>
+<span>B. 强省会战略：济南</span>
+<span>C. 粤港澳大湾区：广州</span>
+<span>D. 京津冀协同发展：北京</span>
+</div>
+<input class="quiz-ans" placeholder="答案">
+<div class="q-detail" style="display:none"><strong>答案：B</strong> — 省级发展战略与省份的对应关系。"八八战略"是浙江的省级发展战略，"强省会战略"是山东的省级发展战略。A/C/D都是跨省区域战略，不是单一省份的战略。</div>
+</div>
+
+<button onclick="gradeQuiz('quiz-0817')" style="background:#0d7377;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600;margin-top:16px">✅ 对答案</button>
+<div id="quiz-0817-result" style="margin-top:10px;font-size:14px;font-weight:600"></div>
+</div>
+</div></div>
+      </div>
     </div>
   </div>
   </div>
